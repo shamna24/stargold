@@ -17,7 +17,18 @@ const Hero = () => {
           <a href="#contact" className="btn-outline" style={{ textDecoration: 'none' }}>Contact Us</a>
         </div>
       </div>
-      <div className="hero-background"></div>
+      <div className="hero-background-container">
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          className="hero-video"
+        >
+          <source src="/hero-video.mp4" type="video/mp4" />
+        </video>
+        <div className="hero-overlay"></div>
+      </div>
     </section>
   );
 };
