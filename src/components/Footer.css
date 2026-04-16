@@ -1,0 +1,183 @@
+.footer-section {
+  background: linear-gradient(180deg, #18181A 0%, #2A2A2E 100%);
+  position: relative;
+  text-align: center;
+  padding-top: 100px;
+  overflow: hidden;
+}
+
+.footer-cta-container {
+  margin-bottom: 80px;
+}
+
+.footer-headline {
+  margin-bottom: 40px;
+}
+
+/* Use a serif classic font that resembles the image */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500;1,600&display=swap');
+
+.italic-serif {
+  font-family: 'Outfit', sans-serif;
+  font-style: normal;
+  font-size: 4.5rem;
+  font-weight: 800;
+  color: #F8FAFC;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+}
+
+.footer-pill-btn {
+  background: transparent;
+  color: #F8FAFC;
+  border: 1px solid rgba(255,255,255,0.4);
+  padding: 16px 40px;
+  border-radius: 50px;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.footer-pill-btn:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: #F8FAFC;
+}
+
+.footer-contact-info {
+  margin-bottom: 60px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 24px;
+}
+
+.footer-links span {
+  font-family: 'Inter', sans-serif;
+  color: #9CA3AF;
+  letter-spacing: 3px;
+  font-size: 1rem;
+}
+
+.footer-address {
+  font-family: 'Inter', sans-serif;
+  color: #6B7280;
+  letter-spacing: 3px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+.footer-bottom-bar {
+  background: #FFFFFF;
+  padding: 24px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-icons {
+  display: flex;
+  gap: 24px;
+}
+
+.social-icons a {
+  color: #1A1A1E;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+
+.social-icons a:hover {
+  opacity: 0.6;
+}
+
+.profile-download {
+  position: absolute;
+  right: 40px;
+  bottom: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-label {
+  color: #9CA3AF;
+  letter-spacing: 2px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.download-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #111111;
+  border: none;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.download-btn:hover {
+  transform: translateY(-5px);
+}
+
+.download-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 768px) {
+  .italic-serif { font-size: 3rem; }
+  .footer-links { flex-direction: column; gap: 16px; align-items: center; }
+.profile-download { display: none; }
+}
+
+.developers-credits {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.developers-credits:hover {
+  opacity: 0.8;
+}
+
+.dev-text {
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 4px;
+  font-size: 0.8rem;
+  color: #9CA3AF;
+  text-transform: uppercase;
+}
+
+.developers-credits:hover .dev-text,
+.developers-credits:hover .dev-icon {
+  color: #FFFFFF;
+}
+
+.dev-icon {
+  color: #9CA3AF;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}

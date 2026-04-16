@@ -1,0 +1,106 @@
+.about-section {
+  background-color: #FAFAFA;
+  color: #111111;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-text h2 {
+  font-size: 3rem;
+  margin-bottom: 32px;
+  color: #111111;
+}
+
+.about-section .gold-gradient-text {
+  background: linear-gradient(135deg, #111111 0%, var(--primary-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-text p {
+  color: #555555;
+  line-height: 1.8;
+  margin-bottom: 48px;
+  font-size: 1.1rem;
+}
+
+.stats {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.stat-box h3 {
+  color: var(--primary-gold);
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.stat-box span {
+  color: #222222;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+
+.about-visual {
+  position: relative;
+  height: 450px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.steel-block {
+  width: 80%;
+  height: 100%;
+  background-image: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.2)), url('/hero-bg.jpeg');
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(212,175,55,0.4);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.block-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 4px;
+  opacity: 0.8;
+  color: #111111;
+  transform: rotate(-90deg);
+}
+
+.steel-block::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+  transform: skewX(-20deg);
+  animation: shine 5s infinite;
+}
+
+@keyframes shine {
+  0% { left: -100%; }
+  20% { left: 200%; }
+  100% { left: 200%; }
+}
+
+@media (max-width: 968px) {
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .about-visual { height: 300px; justify-content: center; }
+  .steel-block { width: 100%; }
+}
