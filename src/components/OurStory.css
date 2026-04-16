@@ -31,20 +31,21 @@
 }
 
 .our-story-header h2 {
-  font-size: 3.5rem;
-  margin-bottom: 30px;
+  font-size: clamp(2.2rem, 8vw, 3.8rem);
+  margin-bottom: 24px;
   color: #F8FAFC;
 }
 
 .gradient-accent-text {
   background: linear-gradient(135deg, #60A5FA 0%, var(--primary-gold) 100%);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .story-lead {
-  font-size: 1.25rem;
-  line-height: 1.9;
+  font-size: clamp(1.1rem, 4.5vw, 1.35rem);
+  line-height: 1.8;
   color: #CBD5E1;
   font-weight: 300;
 }
@@ -52,7 +53,7 @@
 .vision-mission-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 48px;
+  gap: 32px;
 }
 
 /* Glassmorphism Card Style */
@@ -64,7 +65,7 @@
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.05);
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-  padding: 48px;
+  padding: 32px;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   display: flex;
   flex-direction: column;
@@ -138,7 +139,7 @@
 }
 
 .glass-card h3 {
-  font-size: 2.2rem;
+  font-size: clamp(1.6rem, 6vw, 2.4rem);
   font-weight: 800;
   letter-spacing: 0.5px;
   color: #F8FAFC;
@@ -147,8 +148,8 @@
 
 .glass-card p {
   color: #E2E8F0;
-  line-height: 1.8;
-  font-size: 1.15rem;
+  line-height: 1.7;
+  font-size: clamp(1rem, 4vw, 1.15rem);
   font-weight: 300;
 }
 

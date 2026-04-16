@@ -12,23 +12,34 @@
   align-items: center;
 }
 
-.about-text h2 {
-  font-size: 3rem;
-  margin-bottom: 32px;
-  color: #111111;
+.about-content h2 {
+  font-size: clamp(2.2rem, 8vw, 3.5rem);
+  margin-bottom: 24px;
+  color: #050505;
 }
 
 .about-section .gold-gradient-text {
   background: linear-gradient(135deg, #111111 0%, var(--primary-gold) 100%);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.about-text p {
-  color: #555555;
-  line-height: 1.8;
-  margin-bottom: 48px;
-  font-size: 1.1rem;
+.about-content p {
+  font-size: clamp(1.1rem, 4vw, 1.25rem);
+  line-height: 1.7;
+  color: #4B5563;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    padding: 60px 20px;
+    flex-direction: column;
+  }
+  .about-content {
+    text-align: center;
+  }
 }
 
 .stats {
