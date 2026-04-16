@@ -35,7 +35,6 @@ const Footer = () => {
           <span className="italic-serif">A Complete Solution</span><br/>
           <span className="italic-serif">For Structural Steel</span>
         </h2>
-        <button className="footer-pill-btn">CONTACT US TODAY</button>
       </div>
       
       <div className="footer-contact-info">
