@@ -5,7 +5,7 @@ const About = () => {
   return (
     <section id="about" className="about-section section-padding">
       <div className="container about-grid">
-        <div className="about-text animate-fade-up">
+        <div className="about-content animate-fade-up">
           <h2>About <span className="gold-gradient-text">STARGOLD</span></h2>
           <p>
             Based in Ajman Jurf-1, STARGOLD STEEL L.L.C is a premier provider of industrial and structural steel materials. We are dedicated to delivering excellence, supporting foundational infrastructure developments, and maintaining the highest standards of structural integrity across the UAE region.
