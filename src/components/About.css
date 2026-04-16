@@ -64,7 +64,7 @@
 
 .about-visual {
   position: relative;
-  height: 450px;
+  height: 550px;
   display: flex;
   justify-content: flex-end;
 }
@@ -72,14 +72,14 @@
 .steel-block {
   width: 80%;
   height: 100%;
-  background-image: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.2)), url('/hero-bg.jpeg');
+  background-image: linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.1)), url('/about-hero.jpg');
   background-size: cover;
   background-position: center;
   border: 1px solid rgba(212,175,55,0.4);
   border-radius: 4px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.15);
   display: flex;
   align-items: center;
   justify-content: center;
