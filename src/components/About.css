@@ -64,86 +64,44 @@
 
 .about-visual {
   position: relative;
-  width: 100%;
-}
-
-.about-image-grid {
-  position: relative;
+  height: 550px;
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  justify-content: flex-end;
 }
 
-.about-img-card {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(212, 175, 55, 0.2);
-}
-
-.about-img-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.about-img-card:hover img {
-  transform: scale(1.05);
-}
-
-.main-card {
-  width: 90%;
-  z-index: 1;
-}
-
-.side-card {
-  width: 70%;
-  align-self: flex-end;
-  margin-top: -150px;
-  z-index: 2;
-  border-color: rgba(212, 175, 55, 0.4);
-}
-
-.card-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
-  pointer-events: none;
-}
-
-.experience-badge {
-  position: absolute;
-  bottom: 40px;
-  left: -20px;
-  background: rgba(212, 175, 55, 0.95);
-  backdrop-filter: blur(8px);
-  padding: 24px;
+.steel-block {
+  width: 80%;
+  height: 100%;
+  background-image: linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.1)), url('/about-hero.jpg');
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(212,175,55,0.4);
   border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.15);
   display: flex;
-  flex-direction: column;
   align-items: center;
-  z-index: 3;
-  box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
-  color: #000;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  justify-content: center;
 }
 
-.badge-number {
-  font-size: 2.5rem;
+.block-label {
   font-family: 'Outfit', sans-serif;
+  font-size: 2rem;
   font-weight: 800;
-  line-height: 1;
+  letter-spacing: 4px;
+  opacity: 0.8;
+  color: #111111;
+  transform: rotate(-90deg);
 }
 
-.badge-text {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 700;
-  text-align: center;
-  margin-top: 4px;
+.steel-block::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+  transform: skewX(-20deg);
+  animation: shine 5s infinite;
 }
 
 @keyframes shine {
@@ -153,10 +111,7 @@
 }
 
 @media (max-width: 968px) {
-  .about-grid { grid-template-columns: 1fr; gap: 60px; }
-  .about-visual { max-width: 600px; margin: 0 auto; }
-  .main-card { width: 100%; }
-  .side-card { width: 85%; margin-top: -100px; }
-  .experience-badge { left: 10px; bottom: 20px; padding: 16px; }
-  .badge-number { font-size: 1.8rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .about-visual { height: 300px; justify-content: center; }
+  .steel-block { width: 100%; }
 }
