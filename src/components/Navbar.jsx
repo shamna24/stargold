@@ -20,22 +20,17 @@ const Navbar = () => {
         </div>
         <nav className="nav-links">
           <a href="#home">Home</a>
+          <a href="#services">Services</a>
+          <a href="#gallery">Gallery</a>
           
           <div className="nav-dropdown">
             <a href="#about" className="dropbtn">About Us</a>
             <div className="dropdown-content">
               <a href="#our-story">Our Story</a>
+              <a href="#why-choose-us">Why Choose Us</a>
             </div>
           </div>
 
-          <div className="nav-dropdown">
-            <a href="#services" className="dropbtn">Services</a>
-            <div className="dropdown-content">
-              <a href="#why-choose-us">Why Choose Us?</a>
-            </div>
-          </div>
-
-          <a href="#gallery">Gallery</a>
           <a href="#contact" className="contact-btn">Contact Us</a>
         </nav>
       </div>

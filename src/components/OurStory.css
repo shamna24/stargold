@@ -120,16 +120,22 @@
 }
 
 .icon-wrapper {
-  width: 56px;
-  height: 56px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(212, 175, 55, 0.2));
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(212, 175, 55, 0.25));
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #F8FAFC;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition: all 0.4s ease;
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  stroke-width: 2.5;
 }
 
 .glass-card:hover .icon-wrapper {

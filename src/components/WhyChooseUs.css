@@ -100,11 +100,11 @@
 .icon-wrapper {
   margin-bottom: 40px;
   display: inline-flex;
-  padding: 25px;
+  padding: 30px;
   border-radius: 50%;
-  background: rgba(212, 175, 55, 0.1);
-  box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  background: rgba(212, 175, 55, 0.12);
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.4);
   transition: all 0.6s ease;
 }
 
@@ -114,9 +114,9 @@
 }
 
 .card-icon {
-  width: 100px;
-  height: 100px;
-  filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.5));
+  width: 120px;
+  height: 120px;
+  filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
   transition: all 0.6s ease;
 }
 

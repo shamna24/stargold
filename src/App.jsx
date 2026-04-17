@@ -40,11 +40,11 @@ function App() {
       <Navbar />
       <main>
         <Hero />
+        <Services />
+        <Gallery />
         <About />
         <OurStory />
-        <Services />
         <WhyChooseUs />
-        <Gallery />
       </main>
       <Footer />
     </div>
