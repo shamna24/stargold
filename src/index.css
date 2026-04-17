@@ -57,13 +57,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .animate-fade-up {
-  animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+              transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
 }
 
-.delay-100 { animation-delay: 0.1s; }
-.delay-200 { animation-delay: 0.2s; }
-.delay-300 { animation-delay: 0.3s; }
-.delay-400 { animation-delay: 0.4s; }
+.animate-fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+.delay-400 { transition-delay: 0.4s; }
+
 
 /* Global Utilities */
 .section-padding {
@@ -98,19 +108,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-outline {
-  background: transparent;
-  color: var(--text-main);
+  background: #0a0a0c;
+  color: var(--primary-gold);
   padding: 12px 32px;
-  border: 1px solid var(--steel-gray);
+  border: 1px solid var(--primary-gold);
   font-family: 'Outfit', sans-serif;
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
   border-radius: 4px;
   transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .btn-outline:hover {
+  background: var(--primary-gold-dim);
   border-color: var(--primary-gold);
   color: var(--primary-gold);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
 }

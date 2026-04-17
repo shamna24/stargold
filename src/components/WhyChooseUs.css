@@ -1,48 +1,170 @@
 .why-choose-us-section {
-  background: var(--dark-bg);
+  background: 
+    radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 70%),
+    #050505;
+  position: relative;
+  overflow: hidden;
 }
 
 .choose-header {
   text-align: center;
-  margin-bottom: 64px;
+  margin-bottom: 80px;
 }
 
-.choose-header h2 {
-  font-size: 3rem;
-  margin-bottom: 16px;
+.premium-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  letter-spacing: -1px;
+  margin-bottom: 20px;
 }
 
-.choose-header p {
+.premium-subtitle {
   color: var(--text-muted);
   font-size: 1.1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .choose-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 32px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
 }
 
 .choose-card {
-  padding: 40px 32px;
-  background: var(--dark-bg-elevated);
-  border-top: 3px solid var(--primary-gold);
-  border-radius: 4px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  padding: 80px 40px;
+  border-radius: 24px;
+  border: 4px solid #FFD700;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
 }
 
-.choose-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+.card-bg-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  transition: transform 0.8s ease;
+  background-size: cover;
+  background-position: center;
+  filter: blur(4px) brightness(0.6);
+}
+
+.quality-card .card-bg-layer {
+  background-image: url('../assets/why-choose-us/silver_steel_quality_texture_1776428907510.png');
+}
+
+.delivery-card .card-bg-layer {
+  background-image: url('../assets/why-choose-us/silver_steel_delivery_view_1776428964101.png');
+}
+
+.consulting-card .card-bg-layer {
+  background-image: url('../assets/why-choose-us/silver_steel_blueprint_texture_1776429067685.png');
+}
+
+.choose-card:hover .card-bg-layer {
+  transform: scale(1.1);
+  filter: blur(2px) brightness(1.2);
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.choose-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1;
+  transition: background 0.6s ease;
+}
+
+.choose-card:hover::after {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(4px);
+}
+
+.icon-wrapper {
+  margin-bottom: 40px;
+  display: inline-flex;
+  padding: 25px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.1);
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  transition: all 0.6s ease;
+}
+
+.choose-card:hover .icon-wrapper {
+  background: rgba(0, 0, 0, 0.05);
+  transform: scale(1.1);
+}
+
+.card-icon {
+  width: 100px;
+  height: 100px;
+  filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.5));
+  transition: all 0.6s ease;
+}
+
+.choose-card:hover .card-icon {
+  filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.7));
+}
+
+/* Make white parts of icons visible on white background by changing them to gold/dark */
+.choose-card:hover .card-icon [stroke="white"] {
+  stroke: #D4AF37;
+  opacity: 1;
 }
 
 .choose-card h3 {
-  font-size: 1.4rem;
-  margin-bottom: 16px;
-  color: var(--text-main);
+  font-size: 2.2rem;
+  margin-bottom: 20px;
+  color: #FFFFFF;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  transition: color 0.6s ease;
 }
 
 .choose-card p {
-  color: var(--text-muted);
-  line-height: 1.6;
+  color: #E5E7EB;
+  line-height: 1.8;
+  font-size: 1.15rem;
+  max-width: 100%;
+  transition: color 0.6s ease;
+}
+
+.choose-card:hover h3 {
+  color: #050505;
+}
+
+.choose-card:hover p {
+  color: #374151;
+}
+
+.choose-card:hover {
+  transform: translateY(-20px);
+  box-shadow: 0 50px 100px rgba(0, 0, 0, 0.6), 0 0 30px rgba(212, 175, 55, 0.3);
+  border-color: #F3DA7A;
+}
+
+@media (max-width: 768px) {
+  .choose-grid {
+    grid-template-columns: 1fr;
+    padding: 0 20px;
+  }
 }

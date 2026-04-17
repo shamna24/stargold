@@ -55,10 +55,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="profile-download">
-        <span className="profile-label">PROFILE</span>
-        <button className="download-btn"><DownloadIcon /></button>
-      </div>
+
 
       <div className="footer-bottom">
         <a href="https://www.instagram.com/intellex.web?igsh=MTVlYjBid3gwbHBmZw==" target="_blank" rel="noopener noreferrer" className="developers-credits">

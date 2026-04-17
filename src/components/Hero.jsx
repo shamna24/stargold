@@ -1,9 +1,52 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './Hero.css';
 
 const Hero = () => {
+  const heroRef = useRef(null);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Ensure metadata is loaded to get duration
+    const handleLoadedMetadata = () => {
+      // Initialize video to start
+      video.currentTime = 0;
+    };
+    video.addEventListener('loadedmetadata', handleLoadedMetadata);
+
+    const handleScroll = () => {
+      if (!heroRef.current || !videoRef.current) return;
+      
+      const scrolled = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      
+      // Calculate progress based on the first fold (0 to 1)
+      let progress = scrolled / viewportHeight;
+      progress = Math.min(Math.max(progress, 0), 1);
+      
+      requestAnimationFrame(() => {
+        if (videoRef.current && videoRef.current.duration) {
+          videoRef.current.currentTime = videoRef.current.duration * progress;
+        }
+        // Update CSS variable for other parallax effects
+        heroRef.current.style.setProperty('--hero-scroll', progress);
+      });
+    };
+
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+    };
+  }, []);
+
   return (
-    <section id="home" className="hero-section">
+    <section id="home" className="hero-section" ref={heroRef}>
+
+
       <div className="hero-content container">
         <h1 className="hero-title animate-fade-up">
           Forging the Future in <br />
@@ -19,16 +62,17 @@ const Hero = () => {
       </div>
       <div className="hero-background-container">
         <video 
-          autoPlay 
-          loop 
+          ref={videoRef}
           muted 
           playsInline 
           className="hero-video"
+          preload="auto"
         >
           <source src="/hero-video.mp4" type="video/mp4" />
         </video>
         <div className="hero-overlay"></div>
       </div>
+
     </section>
   );
 };
