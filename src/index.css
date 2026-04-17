@@ -38,9 +38,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Cinematic Content Reveal */
 main > section:not(.cinematic-intro) {
-  opacity: calc((var(--intro-progress) - 0.95) * 20);
+  opacity: calc((var(--intro-progress) - 0.99) * 100);
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.5s ease-out;
 }
 
 main > section:not(.cinematic-intro).reveal-locked {

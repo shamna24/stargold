@@ -20,25 +20,34 @@
   background: #000;
 }
 
-.intro-video-bg-blur {
+.video-backdrop-overlay {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: blur(40px) brightness(0.4);
-  transform: scale(1.1); /* Prevents edge bleed */
-  opacity: 0.8;
+  background: radial-gradient(circle at center, rgba(212, 175, 55, 0.15) 0%, #000 100%);
   z-index: 1;
+  animation: pulseBackground 8s ease-in-out infinite;
+}
+
+@keyframes pulseBackground {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.05); }
 }
 
 .intro-video-scrub {
   position: relative;
-  z-index: 2;
+  z-index: 5;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: contain; /* Always show 100% of the video/text */
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
   transition: opacity 0.5s ease;
+}
+
+@media (min-width: 1024px) {
+  .intro-video-scrub {
+    object-fit: cover; /* Back to cover on desktop where text usually fits */
+  }
 }
 
 .video-overlay-cinematic {
@@ -48,59 +57,10 @@
   pointer-events: none;
 }
 
-/* Scroll Animation Indicator */
-.scroll-indicator {
-  position: absolute;
-  bottom: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  transition: opacity 0.8s ease, transform 0.8s ease;
-  z-index: 10;
-}
-
-.scroll-indicator.fade-out {
-  opacity: 0;
-  transform: translate(-50%, 20px);
-  pointer-events: none;
-}
-
-.scroll-indicator p {
-  color: #fff;
-  font-family: 'Outfit', sans-serif;
-  font-size: clamp(0.6rem, 2vw, 0.8rem);
-  letter-spacing: 4px;
-  opacity: 0.6;
-  text-align: center;
-}
-
-.mouse {
-  width: 26px;
-  height: 44px;
-  border-radius: 20px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  position: relative;
-}
-
-.wheel {
-  width: 4px;
-  height: 8px;
-  background: var(--primary-gold);
-  border-radius: 2px;
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: scrollWheel 2s ease-in-out infinite;
-}
-
-@keyframes scrollWheel {
-  0% { transform: translate(-50%, 0); opacity: 0; }
-  30% { opacity: 1; }
-  100% { transform: translate(-50%, 15px); opacity: 0; }
+@keyframes floatCard {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
 }
 
 @media (max-width: 768px) {

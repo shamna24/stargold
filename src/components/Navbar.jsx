@@ -10,7 +10,8 @@ const Navbar = () => {
       setScrolled(window.scrollY > 50);
       const introSection = document.querySelector('.cinematic-intro');
       if (introSection) {
-        const threshold = introSection.offsetHeight - (window.innerHeight * 0.5);
+        // Delay navbar until nearly the very end of the scroll buffer
+        const threshold = introSection.offsetHeight * 0.95;
         setIsVisible(window.scrollY > threshold);
       } else {
         setIsVisible(window.scrollY > 50);

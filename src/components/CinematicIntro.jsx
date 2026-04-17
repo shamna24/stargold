@@ -1,56 +1,60 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './CinematicIntro.css';
 
 const CinematicIntro = () => {
   const containerRef = useRef(null);
   const videoRef = useRef(null);
-  const bgVideoRef = useRef(null);
-  const [isStarted, setIsStarted] = useState(false);
+  const targetProgress = useRef(0);
+  const currentProgress = useRef(0);
+  const lastTime = useRef(0);
+  const requestRef = useRef();
 
   useEffect(() => {
     const video = videoRef.current;
-    const bgVideo = bgVideoRef.current;
-    if (!video || !bgVideo) return;
+    if (!video) return;
 
     const handleLoadedMetadata = () => {
       video.currentTime = 0;
-      bgVideo.currentTime = 0;
     };
     
     video.addEventListener('loadedmetadata', handleLoadedMetadata);
 
-    const handleScroll = () => {
-      if (!containerRef.current || !videoRef.current || !bgVideoRef.current) return;
-
-      const container = containerRef.current;
-      const rect = container.getBoundingClientRect();
-      const viewHeight = window.innerHeight;
+    const updateVideo = () => {
+      // Linear interpolation for smoothness (Lerp)
+      const smoothingFactor = 0.05; 
+      currentProgress.current += (targetProgress.current - currentProgress.current) * smoothingFactor;
       
-      const totalScrollable = container.scrollHeight - viewHeight;
-      const currentScroll = Math.abs(rect.top);
-      
-      let progress = currentScroll / totalScrollable;
-      progress = Math.min(Math.max(progress, 0), 1);
-
-      if (progress > 0.05) setIsStarted(true);
-      else setIsStarted(false);
-
-      // Communicate progress to the parent for the reveal effect
-      document.documentElement.style.setProperty('--intro-progress', progress);
-
-      requestAnimationFrame(() => {
-        const duration = videoRef.current.duration;
-        if (duration) {
-          const targetTime = duration * progress;
-          videoRef.current.currentTime = targetTime;
-          bgVideoRef.current.currentTime = targetTime;
+      const mainVideo = videoRef.current;
+      if (mainVideo && mainVideo.duration) {
+        const targetTime = mainVideo.duration * currentProgress.current;
+        
+        // Single video seek - much lighter on performance
+        if (!mainVideo.seeking && Math.abs(targetTime - lastTime.current) > 0.015) {
+          mainVideo.currentTime = targetTime;
+          lastTime.current = targetTime;
         }
-      });
+      }
+      
+      document.documentElement.style.setProperty('--intro-progress', currentProgress.current);
+      requestRef.current = requestAnimationFrame(updateVideo);
+    };
+
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      const totalScrollable = containerRef.current.scrollHeight - window.innerHeight;
+      
+      // Reach 100% progress at 85% scroll distance to provide a buffer
+      let progress = Math.abs(rect.top) / (totalScrollable * 0.85);
+      targetProgress.current = Math.min(Math.max(progress, 0), 1);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    requestRef.current = requestAnimationFrame(updateVideo);
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      if (requestRef.current) cancelAnimationFrame(requestRef.current);
       video.removeEventListener('loadedmetadata', handleLoadedMetadata);
     };
   }, []);
@@ -58,15 +62,6 @@ const CinematicIntro = () => {
   return (
     <section ref={containerRef} className="cinematic-intro">
       <div className="video-sticky-wrapper">
-        <video
-          ref={bgVideoRef}
-          muted
-          playsInline
-          className="intro-video-bg-blur"
-          preload="auto"
-        >
-          <source src="/intro-video.mp4" type="video/mp4" />
-        </video>
         <video
           ref={videoRef}
           muted
@@ -76,14 +71,8 @@ const CinematicIntro = () => {
         >
           <source src="/intro-video.mp4" type="video/mp4" />
         </video>
+        <div className="video-backdrop-overlay"></div>
         <div className="video-overlay-cinematic"></div>
-        
-        <div className={`scroll-indicator ${isStarted ? 'fade-out' : ''}`}>
-          <div className="mouse">
-            <div className="wheel"></div>
-          </div>
-          <p>SCROLL TO BEGIN PROJECT 8</p>
-        </div>
       </div>
     </section>
   );
