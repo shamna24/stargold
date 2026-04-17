@@ -4,27 +4,28 @@ import './CinematicIntro.css';
 const CinematicIntro = () => {
   const containerRef = useRef(null);
   const videoRef = useRef(null);
+  const bgVideoRef = useRef(null);
   const [isStarted, setIsStarted] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    const bgVideo = bgVideoRef.current;
+    if (!video || !bgVideo) return;
 
-    // Load metadata to get duration
     const handleLoadedMetadata = () => {
       video.currentTime = 0;
+      bgVideo.currentTime = 0;
     };
+    
     video.addEventListener('loadedmetadata', handleLoadedMetadata);
 
     const handleScroll = () => {
-      if (!containerRef.current || !videoRef.current) return;
+      if (!containerRef.current || !videoRef.current || !bgVideoRef.current) return;
 
       const container = containerRef.current;
       const rect = container.getBoundingClientRect();
       const viewHeight = window.innerHeight;
       
-      // Calculate progress relative to the container's height
-      // container height is 400vh, so scroll distance is 300vh
       const totalScrollable = container.scrollHeight - viewHeight;
       const currentScroll = Math.abs(rect.top);
       
@@ -38,8 +39,11 @@ const CinematicIntro = () => {
       document.documentElement.style.setProperty('--intro-progress', progress);
 
       requestAnimationFrame(() => {
-        if (videoRef.current && videoRef.current.duration) {
-          videoRef.current.currentTime = videoRef.current.duration * progress;
+        const duration = videoRef.current.duration;
+        if (duration) {
+          const targetTime = duration * progress;
+          videoRef.current.currentTime = targetTime;
+          bgVideoRef.current.currentTime = targetTime;
         }
       });
     };
@@ -54,6 +58,15 @@ const CinematicIntro = () => {
   return (
     <section ref={containerRef} className="cinematic-intro">
       <div className="video-sticky-wrapper">
+        <video
+          ref={bgVideoRef}
+          muted
+          playsInline
+          className="intro-video-bg-blur"
+          preload="auto"
+        >
+          <source src="/intro-video.mp4" type="video/mp4" />
+        </video>
         <video
           ref={videoRef}
           muted

@@ -8,8 +8,13 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-      // Show navbar only after reaching the Hero section (past the 400vh intro)
-      setIsVisible(window.scrollY > window.innerHeight * 3.8);
+      const introSection = document.querySelector('.cinematic-intro');
+      if (introSection) {
+        const threshold = introSection.offsetHeight - (window.innerHeight * 0.5);
+        setIsVisible(window.scrollY > threshold);
+      } else {
+        setIsVisible(window.scrollY > 50);
+      }
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
