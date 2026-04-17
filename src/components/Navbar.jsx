@@ -3,17 +3,20 @@ import './Navbar.css';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+      // Show navbar only after reaching the Hero section (past the 400vh intro)
+      setIsVisible(window.scrollY > window.innerHeight * 3.8);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+    <header className={`navbar ${scrolled ? 'scrolled' : ''} ${!isVisible ? 'hidden' : ''}`}>
       <div className="container nav-container">
         <div className="logo">
           <span className="logo-text">STAR<span className="gold">GOLD</span> STEEL</span>

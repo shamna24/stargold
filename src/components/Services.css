@@ -19,8 +19,20 @@
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 32px;
+}
+
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .service-card {
@@ -54,20 +66,27 @@
 }
 
 .service-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 4px;
-  background: rgba(212,175,55,0.05);
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: rgba(212, 175, 55, 0.1);
   margin-bottom: 24px;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-gold);
+  transition: all 0.3s ease;
 }
 
-.service-icon::after {
-  content: '';
-  position: absolute;
-  inset: 12px;
-  border: 2px solid var(--primary-gold);
-  border-radius: 2px;
+.service-card:hover .service-icon {
+  background: var(--primary-gold);
+  color: #000;
+  transform: rotate(5deg) scale(1.1);
+}
+
+.service-icon svg {
+  width: 28px;
+  height: 28px;
 }
 
 .service-card h3 {

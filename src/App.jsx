@@ -6,6 +6,7 @@ import OurStory from './components/OurStory';
 import Services from './components/Services';
 import WhyChooseUs from './components/WhyChooseUs';
 import Gallery from './components/Gallery';
+import CinematicIntro from './components/CinematicIntro';
 import Footer from './components/Footer';
 import './index.css';
 
@@ -39,6 +40,7 @@ function App() {
 
       <Navbar />
       <main>
+        <CinematicIntro />
         <Hero />
         <Services />
         <Gallery />
