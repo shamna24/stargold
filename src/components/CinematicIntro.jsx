@@ -44,8 +44,8 @@ const CinematicIntro = () => {
       const rect = containerRef.current.getBoundingClientRect();
       const totalScrollable = containerRef.current.scrollHeight - window.innerHeight;
       
-      // Reach 100% progress at 85% scroll distance to provide a buffer
-      let progress = Math.abs(rect.top) / (totalScrollable * 0.85);
+      // Reach 100% progress exactly at the end of the scrollable container
+      let progress = Math.abs(rect.top) / totalScrollable;
       targetProgress.current = Math.min(Math.max(progress, 0), 1);
     };
 

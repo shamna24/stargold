@@ -24,7 +24,8 @@ html {
 body {
   font-family: 'Inter', sans-serif;
   background-color: var(--dark-bg);
-  background-image: radial-gradient(circle at 50% 0%, var(--dark-bg-elevated), var(--dark-bg) 70%);
+  /* Use a more solid background to avoid 'black gaps' between sections */
+  background-image: linear-gradient(to bottom, #050505 0%, #0a0a0a 100%);
   color: var(--text-main);
   overflow-x: hidden;
   min-height: 100vh;
@@ -38,9 +39,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Cinematic Content Reveal */
 main > section:not(.cinematic-intro) {
-  opacity: calc((var(--intro-progress) - 0.99) * 100);
+  opacity: calc((var(--intro-progress) - 0.85) * 6.66); /* Starts at 0.85, full at 1.0 (1/0.15 \approx 6.66) */
   pointer-events: none;
-  transition: opacity 0.5s ease-out;
+  transition: opacity 0.4s ease-out;
 }
 
 main > section:not(.cinematic-intro).reveal-locked {
@@ -96,12 +97,20 @@ main > section:not(.cinematic-intro).reveal-locked {
 
 /* Global Utilities */
 .section-padding {
-  padding: 100px 5%;
+  padding: 120px 0; /* Vertical padding only, let container handle sides */
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 80px 0;
+  }
 }
 
 .container {
+  width: 100%;
   max-width: 1280px;
   margin: 0 auto;
+  padding: 0 5%; /* Side padding inside container */
 }
 
 /* Buttons */
