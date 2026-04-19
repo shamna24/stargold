@@ -3,7 +3,7 @@
   background-color: #FFFFFF;
   color: #000000;
   overflow: visible;
-  min-height: 650vh; /* Increased to ensure all 5 blocks have room */
+  min-height: 1150vh; /* Accommodating 10 blocks + entrance/exit */
   transition: background-color 0.8s ease;
 }
 
@@ -24,21 +24,37 @@
 /* Left Column: Focus Text (40%) */
 .hero-sticky-left-scroll {
   flex: 1;
-  /* Removed height: 100vh to allow scroll container to grow */
+  height: 100vh;
   position: relative;
-  display: flex;
-  flex-direction: column;
+  display: block; /* Removed flex layout for absolute positioning */
   z-index: 5;
+  overflow: hidden;
+}
+
+.feature-focus-wrapper {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
 .feature-focus-item {
-  min-height: 100vh;
-  flex-shrink: 0;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
   display: flex;
-  align-items: center;
-  opacity: 0; /* Purely animated by GSAP now */
-  transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+  flex-direction: column;
+  align-items: flex-start; /* Default desktop alignment */
+  justify-content: center;
+  opacity: 0; 
+  padding-left: 0; /* Let feature-focus-content handle padding */
   will-change: transform, opacity;
+}
+
+.feature-focus-content {
+  padding-left: 10%;
+  width: 100%;
 }
 
 .feature-focus-content {
@@ -46,13 +62,25 @@
 }
 
 .feature-text-main {
-  font-family: 'Outfit', sans-serif;
-  font-size: 1.6rem; 
-  font-weight: 600; /* Increased to 600 for high presence */
-  line-height: 1.5;
-  color: #000000 !important; /* Force pure black */
-  max-width: 440px;
-  letter-spacing: 0.5px;
+  font-family: 'Playfair Display', serif !important;
+  font-style: italic;
+  font-size: 2.5rem; /* Larger for luxury serif */
+  font-weight: 700; /* Bold serif */
+  line-height: 1.2;
+  color: #000000 !important;
+  max-width: 520px;
+  letter-spacing: 0px;
+  margin-bottom: 16px;
+}
+
+.feature-text-sub {
+  font-family: 'Outfit', sans-serif !important; /* Keep sub as clean sans-serif */
+  font-size: 1.15rem;
+  font-weight: 400; 
+  line-height: 1.6;
+  color: #000000 !important;
+  max-width: 460px;
+  opacity: 0.8;
 }
 
 /* Right Column: Large Pinned Video (60%) */
@@ -111,52 +139,77 @@
 
 @media (max-width: 768px) {
   .hero-sticky-section {
-    min-height: 0 !important; /* Explicitly override desktop min-height */
+    min-height: 1000vh !important; /* Scroll room for mobile */
     height: auto;
     padding: 0;
   }
   .hero-sticky-container.nexara-layout {
-    position: relative;
-    height: auto;
-    flex-direction: column-reverse; /* Video Top, Text Bottom */
-    padding: 60px 24px;
-    gap: 30px;
-    overflow: visible;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    flex-direction: column; 
+    padding: 0;
+    gap: 0;
+    overflow: hidden;
   }
+
+  /* Video at the top on Mobile */
   .hero-sticky-right-video {
-    height: auto;
+    flex: none;
+    height: 40vh;
     width: 100%;
+    order: 1; 
+    padding: 20px;
     justify-content: center;
   }
+
+  /* Text area at the bottom on Mobile */
   .hero-sticky-left-scroll {
-    height: auto;
+    flex: none;
+    height: 60vh;
     width: 100%;
-    transform: none !important; /* Prevent GSAP residual transforms */
+    order: 2; 
+    position: relative; 
+    background: #ffffff;
+    overflow: hidden;
+    display: block; /* Use block + absolute children for bulletproof centering */
   }
+
+  .feature-focus-wrapper {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
   .feature-focus-item {
-    min-height: 0 !important;
-    height: auto;
-    opacity: 1 !important;
-    transform: none !important;
-    margin-bottom: 40px;
-    display: block;
+    align-items: center; /* Center on mobile */
+    padding: 0 32px;
   }
+
   .feature-focus-content {
-    padding-left: 0;
+    padding-left: 0; /* Remove desktop padding */
   }
+
   .feature-text-main {
-    font-size: 1.25rem;
-    max-width: 100%;
-    text-align: center;
-    line-height: 1.4;
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 8px !important;
+    color: #000000 !important;
+    font-family: 'Playfair Display', serif !important;
+    font-style: italic;
+    line-height: 1.1 !important;
   }
-  .industrial-notch-left {
-    clip-path: none;
+
+  .feature-text-sub {
+    font-size: 1.05rem !important;
+    font-weight: 400 !important;
+    line-height: 1.4 !important;
+    color: #000000 !important;
+    font-family: 'Outfit', sans-serif !important;
+    opacity: 0.8 !important;
   }
+
   .hero-extra-actions {
-    position: relative;
-    bottom: 0;
-    margin-top: 30px;
-    justify-content: center;
+    display: none; /* Hide on mobile hero to keep clean focus */
   }
 }

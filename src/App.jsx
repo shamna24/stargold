@@ -43,42 +43,41 @@ function App() {
       const focusItems = document.querySelectorAll('.feature-focus-item');
       
       if (featuresContainer && focusItems.length > 0) {
-        // 1. Move the container vertically
-        const scrollTimeline = gsap.timeline({
+        // Create a strictly sequential timeline with CLEARANCE GAPS (Zero-Overlap)
+        const desktopTimeline = gsap.timeline({
           scrollTrigger: {
             trigger: ".hero-sticky-section",
             start: "top top",
             end: "bottom bottom",
-            scrub: 1.2,
+            scrub: 0.2,
           }
         });
 
-        scrollTimeline.to(featuresContainer, {
-          y: -(window.innerHeight * (focusItems.length - 1)),
-          ease: "none"
-        });
+        // Forced initial state: Item 1 visible, others hidden
+        gsap.set(focusItems, { opacity: 0, visibility: "visible", scale: 0.98 });
+        gsap.set(focusItems[0], { opacity: 1, scale: 1 });
 
-        // 2. Focal zone opacity & motion highlights
-        focusItems.forEach((item) => {
-          gsap.fromTo(item, 
-            { opacity: 0.1, y: 30 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 1,
-              scrollTrigger: {
-                trigger: item,
-                start: "top center+=40%",
-                end: "bottom center-=40%",
-                scrub: true,
-                containerAnimation: scrollTimeline,
-                onLeave: () => gsap.to(item, { opacity: 0.1, y: -30, duration: 0.5 }),
-                onEnterBack: () => gsap.to(item, { opacity: 1, y: 0, duration: 0.5 }),
-                onLeaveBack: () => gsap.to(item, { opacity: 0.1, y: 30, duration: 0.5 }),
-                onEnter: () => gsap.to(item, { opacity: 1, y: 0, duration: 0.5 }),
-              }
+        // Build a mathematically sequential timeline
+        focusItems.forEach((item, index) => {
+          if (index === 0) {
+            // Item 1: Snaps out after initial hold
+            desktopTimeline.to(item, { opacity: 0, scale: 0.98, duration: 0.4 }, 1.5);
+            desktopTimeline.add("gap1", "+=0.3"); // EXPLICIT GAP
+          } else {
+            // Snap In - Starts only after the GAP from the previous item
+            desktopTimeline.to(item, { opacity: 1, scale: 1, duration: 0.4 }, ">");
+            
+            // Hold at 100%
+            if (index < focusItems.length - 1) {
+              desktopTimeline.to(item, { opacity: 1, duration: 2.5 }, ">"); 
+              // Snap Out
+              desktopTimeline.to(item, { opacity: 0, scale: 0.98, duration: 0.4 }, ">"); 
+              desktopTimeline.add(`gap${index + 1}`, "+=0.3"); // EXPLICIT GAP
+            } else {
+              // Last item: Permanent Hold
+              desktopTimeline.to(item, { opacity: 1, duration: 2.5 }, ">");
             }
-          );
+          }
         });
       }
 
@@ -98,15 +97,52 @@ function App() {
       });
     });
 
-    // Mobile Cleanup / Fallback
+    // Mobile Focal-Scroll Logic
     mm.add("(max-width: 768px)", () => {
-      // Force body background to white for Hero section on mobile
       gsap.set("body", { backgroundColor: "#ffffff" });
       document.querySelector('.navbar-pill-container')?.classList.add('theme-light');
       
-      // Ensure all items are visible on mobile
+      const featuresContainer = document.querySelector('.hero-sticky-left-scroll');
       const focusItems = document.querySelectorAll('.feature-focus-item');
-      gsap.set(focusItems, { opacity: 1, y: 0 });
+      
+      if (featuresContainer && focusItems.length > 0) {
+        // Create a strictly sequential timeline with CLEARANCE GAPS (Zero-Overlap)
+        const mobileTimeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".hero-sticky-section",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.2,
+          }
+        });
+
+        // Forced initial state: Item 1 visible, others hidden
+        gsap.set(focusItems, { opacity: 0, visibility: "visible", scale: 0.98 });
+        gsap.set(focusItems[0], { opacity: 1, scale: 1 });
+
+        // Build a mathematically sequential timeline
+        focusItems.forEach((item, index) => {
+          if (index === 0) {
+            // Item 1: Snaps out after initial hold
+            mobileTimeline.to(item, { opacity: 0, scale: 0.98, duration: 0.4 }, 1.5);
+            mobileTimeline.add("gap1", "+=0.3"); // EXPLICIT GAP
+          } else {
+            // Snap In - Starts only after the GAP from the previous item
+            mobileTimeline.to(item, { opacity: 1, scale: 1, duration: 0.4 }, ">");
+            
+            // Hold at 100%
+            if (index < focusItems.length - 1) {
+              mobileTimeline.to(item, { opacity: 1, duration: 2.5 }, ">"); 
+              // Snap Out
+              mobileTimeline.to(item, { opacity: 0, scale: 0.98, duration: 0.4 }, ">"); 
+              mobileTimeline.add(`gap${index + 1}`, "+=0.3"); // EXPLICIT GAP
+            } else {
+              // Last item: Permanent Hold
+              mobileTimeline.to(item, { opacity: 1, duration: 2.5 }, ">");
+            }
+          }
+        });
+      }
     });
 
     return () => {

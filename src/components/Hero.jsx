@@ -6,19 +6,44 @@ const Hero = () => {
 
   const featureBlocks = [
     {
-      text: "From heavy-duty structures to precision-crafted finishes, we transform raw steel into powerful, lasting solutions."
+      main: "Custom stainless steel fabrication tailored to your exact needs.",
+      sub: "From industrial structures to detailed architectural elements."
     },
     {
-      text: "Precision cutting. Smart bending. Expert fabrication. Every detail engineered to perfection."
+      main: "Complete kitchen solutions for restaurants, cafeterias, and homes.",
+      sub: "Designed for hygiene, durability, and modern performance."
     },
     {
-      text: "From concept to completion, we deliver steel solutions that combine strength, durability, and design excellence."
+      main: "Advanced laser cutting technology for clean edges and precise designs.",
+      sub: "Ensuring accuracy in every cut."
     },
     {
-      text: "High-quality stainless steel solutions for industries, businesses, and modern living spaces."
+      main: "High-performance sheet metal bending for perfect shaping.",
+      sub: "Built for strength, consistency, and industrial efficiency."
     },
     {
-      text: "Engineered with precision. Built with strength. Delivered with uncompromising quality."
+      main: "Precision shearing with minimal material waste.",
+      sub: "Delivering speed, accuracy, and cost-effective production."
+    },
+    {
+      main: "Expert craftsmanship backed by years of hands-on experience.",
+      sub: "Handling complex fabrication projects with confidence."
+    },
+    {
+      main: "Wide range of materials including stainless steel, mild steel, GI, and aluminum.",
+      sub: "Versatile solutions for every requirement."
+    },
+    {
+      main: "From concept to installation, we manage complete fabrication workflows.",
+      sub: "Ensuring seamless execution at every stage."
+    },
+    {
+      main: "Durable and reliable metal solutions for industrial and commercial use.",
+      sub: "Engineered to perform under demanding conditions."
+    },
+    {
+      main: "Customer-focused approach with timely delivery and clear communication.",
+      sub: "Committed to quality, precision, and satisfaction."
     }
   ];
 
@@ -31,7 +56,8 @@ const Hero = () => {
           {featureBlocks.map((block, index) => (
             <div key={index} className="feature-focus-item">
               <div className="feature-focus-content">
-                <p className="feature-text-main">{block.text}</p>
+                <p className="feature-text-main">{block.main}</p>
+                <p className="feature-text-sub">{block.sub}</p>
               </div>
             </div>
           ))}
