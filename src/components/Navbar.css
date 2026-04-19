@@ -1,37 +1,41 @@
-.navbar {
+.navbar-pill-container {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 3000; /* Higher than cinematic intro z-index */
-  padding: 24px 5%;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5000;
+  width: auto;
+  max-width: 90%;
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.navbar.hidden {
-  opacity: 0;
-  transform: translateY(-20px);
   pointer-events: none;
 }
 
-.navbar.scrolled {
-  background: rgba(10, 10, 12, 0.95);
-  backdrop-filter: blur(12px);
-  padding: 16px 5%;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+.navbar-pill-container.hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-20px) scale(0.95);
 }
 
-.nav-container {
+.navbar-pill {
+  pointer-events: auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 8px 12px 8px 24px;
+  background: rgba(15, 15, 18, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .logo-text {
   font-family: 'Outfit', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: 800;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  color: #FFFFFF;
 }
 
 .logo-text .gold {
@@ -41,80 +45,136 @@
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 28px;
 }
 
-.nav-links a {
-  color: var(--text-main);
+.nav-links a, .dropbtn {
+  color: var(--text-muted);
   text-decoration: none;
   font-family: 'Inter', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 500;
-  transition: color 0.3s ease;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-.nav-links a:hover {
-  color: var(--primary-gold);
+.nav-links a:hover, .nav-dropdown:hover .dropbtn {
+  color: #FFFFFF;
 }
 
 .nav-dropdown {
   position: relative;
-  display: inline-block;
-  padding: 8px 0;
+  display: flex;
+  align-items: center;
 }
 
 .dropdown-content {
   visibility: hidden;
   opacity: 0;
   position: absolute;
-  top: 100%;
-  left: -16px;
-  background-color: rgba(10, 10, 12, 0.98);
+  top: calc(100% + 15px);
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background-color: rgba(15, 15, 18, 0.95);
+  backdrop-filter: blur(10px);
   min-width: 180px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 4px;
-  z-index: 1001;
-  transition: all 0.3s ease;
-  transform: translateY(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
 }
 
 .nav-dropdown:hover .dropdown-content {
   visibility: visible;
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0);
 }
 
 .dropdown-content a {
-  padding: 14px 16px;
+  padding: 12px 20px;
   display: block;
-  text-align: left;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-
-.dropdown-content a:last-child {
-  border-bottom: none;
+  font-size: 0.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .dropdown-content a:hover {
-  background-color: rgba(212,175,55,0.05);
+  background: rgba(212, 175, 55, 0.1);
   color: var(--primary-gold);
 }
 
-
 .contact-btn {
-  border: 1px solid var(--primary-gold);
-  padding: 8px 20px;
-  border-radius: 4px;
+  background: #FFFFFF;
+  color: #000000;
+  padding: 8px 24px;
+  border-radius: 999px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
 }
 
 .contact-btn:hover {
   background: var(--primary-gold);
-  color: #000 !important;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+/* Light Theme Variant */
+.navbar-pill-container.theme-light .navbar-pill {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-pill-container.theme-light .logo-text {
+  color: #111111;
+}
+
+.navbar-pill-container.theme-light .nav-links a, 
+.navbar-pill-container.theme-light .dropbtn {
+  color: #555555;
+}
+
+.navbar-pill-container.theme-light .nav-links a:hover,
+.navbar-pill-container.theme-light .nav-dropdown:hover .dropbtn {
+  color: #000000;
+}
+
+.navbar-pill-container.theme-light .contact-btn {
+  background: #111111;
+  color: #FFFFFF;
+}
+
+.navbar-pill-container.theme-light .contact-btn:hover {
+  background: var(--primary-gold);
+  color: #000000;
+}
+
+@media (max-width: 992px) {
+  .nav-links {
+    gap: 15px;
+  }
 }
 
 @media (max-width: 768px) {
+  .navbar-pill {
+    gap: 20px;
+    padding: 6px 6px 6px 18px;
+  }
   .nav-links {
     display: none;
+  }
+  .logo-text {
+    font-size: 0.9rem;
+  }
+  .contact-btn {
+    padding: 6px 16px;
+    font-size: 0.75rem;
   }
 }
