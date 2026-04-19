@@ -52,12 +52,12 @@
   color: var(--text-muted);
   text-decoration: none;
   font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-size: 0.95rem; /* Slightly larger for non-caps */
+  font-weight: 500; /* Regular weight for standard text */
+  letter-spacing: 0px;
   transition: all 0.3s ease;
   cursor: pointer;
+  white-space: nowrap; /* Prevent "About Us" from wrapping */
 }
 
 .nav-links a:hover, .nav-dropdown:hover .dropbtn {
@@ -156,6 +156,114 @@
   color: #000000;
 }
 
+/* Hamburger Menu Button */
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 5010;
+}
+
+.mobile-menu-btn span {
+  width: 100%;
+  height: 2px;
+  background-color: #FFFFFF;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.navbar-pill-container.theme-light .mobile-menu-btn span {
+  background-color: #000000;
+}
+
+.mobile-menu-btn.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+  background-color: #FFFFFF; /* Force white inside full menu */
+}
+.mobile-menu-btn.open span:nth-child(2) {
+  opacity: 0;
+}
+.mobile-menu-btn.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+  background-color: #FFFFFF; /* Force white inside full menu */
+}
+
+/* Mobile Fullscreen Menu Overlay */
+.mobile-nav-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  background: rgba(5, 5, 5, 0.98);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  z-index: 5005;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mobile-nav-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-nav-overlay a, .mobile-nav-overlay .dropbtn {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-decoration: none;
+  text-align: center;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.mobile-nav-overlay.open a, .mobile-nav-overlay.open .dropbtn {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.mobile-nav-overlay.open a:nth-child(1) { transition-delay: 0.1s; }
+.mobile-nav-overlay.open a:nth-child(2) { transition-delay: 0.15s; }
+.mobile-nav-overlay.open a:nth-child(3) { transition-delay: 0.2s; }
+.mobile-nav-overlay.open .mobile-nav-dropdown { transition-delay: 0.25s; }
+
+.mobile-nav-dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.mobile-nav-dropdown .dropdown-content-mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.mobile-nav-dropdown .dropdown-content-mobile a {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+}
+
 @media (max-width: 992px) {
   .nav-links {
     gap: 15px;
@@ -165,16 +273,30 @@
 @media (max-width: 768px) {
   .navbar-pill {
     gap: 20px;
-    padding: 6px 6px 6px 18px;
+    padding: 10px 18px; /* Slightly taller for easy touch */
   }
   .nav-links {
-    display: none;
-  }
-  .logo-text {
-    font-size: 0.9rem;
+    display: none; /* Hide desktop links */
   }
   .contact-btn {
-    padding: 6px 16px;
-    font-size: 0.75rem;
+    display: none; /* Hide desktop contact button to make room for menu */
+  }
+  .mobile-menu-btn {
+    display: flex; /* Show Hamburger */
+  }
+  .logo-text {
+    font-size: 1rem;
+  }
+  
+  /* When menu is open, the pill background disappears to let the full overlay shine */
+  .navbar-pill-container.menu-open .navbar-pill {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .navbar-pill-container.menu-open .logo-text {
+    color: #FFFFFF !important;
   }
 }

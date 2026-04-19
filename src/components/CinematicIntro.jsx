@@ -7,6 +7,7 @@ const CinematicIntro = () => {
   const targetProgress = useRef(0);
   const currentProgress = useRef(0);
   const lastTime = useRef(0);
+  const lastUpdateMs = useRef(0);
   const requestRef = useRef();
 
   useEffect(() => {
@@ -33,10 +34,17 @@ const CinematicIntro = () => {
         
         const targetTime = startTime + (trimDuration * currentProgress.current);
         
-        // Single video seek - much lighter on performance
-        if (!mainVideo.seeking && Math.abs(targetTime - lastTime.current) > 0.015) {
+        // --- MOBILE ANTI-LAG OPTIMIZATION ---
+        // Scrubbing video.currentTime rapidly destroys mobile CPU performance.
+        const isMobile = window.innerWidth <= 768;
+        const seekThreshold = isMobile ? 0.08 : 0.015; // Require more scroll movement before seeking on mobile
+        const throttleMs = isMobile ? 80 : 16; // Restrict to ~12fps on mobile, 60fps on desktop
+        const now = Date.now();
+        
+        if (!mainVideo.seeking && Math.abs(targetTime - lastTime.current) > seekThreshold && (now - lastUpdateMs.current > throttleMs)) {
           mainVideo.currentTime = targetTime;
           lastTime.current = targetTime;
+          lastUpdateMs.current = now;
         }
       }
       

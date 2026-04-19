@@ -112,7 +112,9 @@ function App() {
             trigger: ".hero-sticky-section",
             start: "top top",
             end: "bottom bottom",
-            scrub: 0.2,
+            scrub: 0.2, // smoothing factor
+            anticipatePin: 1, // Anti-lag optimization for mobile pinning
+            fastScrollEnd: true, // Prevents hanging on rapid mobile swipes
           }
         });
 
