@@ -111,27 +111,44 @@
 
 @media (max-width: 768px) {
   .hero-sticky-section {
-    min-height: auto;
+    min-height: 0 !important; /* Explicitly override desktop min-height */
+    height: auto;
+    padding: 0;
   }
   .hero-sticky-container.nexara-layout {
     position: relative;
     height: auto;
     flex-direction: column-reverse; /* Video Top, Text Bottom */
-    padding: 80px 5%;
-    gap: 40px;
+    padding: 60px 24px;
+    gap: 30px;
+    overflow: visible;
   }
   .hero-sticky-right-video {
     height: auto;
     width: 100%;
+    justify-content: center;
   }
   .hero-sticky-left-scroll {
     height: auto;
     width: 100%;
+    transform: none !important; /* Prevent GSAP residual transforms */
   }
   .feature-focus-item {
+    min-height: 0 !important;
     height: auto;
-    opacity: 1; /* Fully visible on mobile scroll */
-    margin-bottom: 60px;
+    opacity: 1 !important;
+    transform: none !important;
+    margin-bottom: 40px;
+    display: block;
+  }
+  .feature-focus-content {
+    padding-left: 0;
+  }
+  .feature-text-main {
+    font-size: 1.25rem;
+    max-width: 100%;
+    text-align: center;
+    line-height: 1.4;
   }
   .industrial-notch-left {
     clip-path: none;
@@ -139,6 +156,7 @@
   .hero-extra-actions {
     position: relative;
     bottom: 0;
-    margin-top: 40px;
+    margin-top: 30px;
+    justify-content: center;
   }
 }
