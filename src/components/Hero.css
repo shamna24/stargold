@@ -3,7 +3,7 @@
   background-color: #FFFFFF;
   color: #000000;
   overflow: visible;
-  min-height: 500vh; /* Scroll room for 5 items */
+  min-height: 650vh; /* Increased to ensure all 5 blocks have room */
   transition: background-color 0.8s ease;
 }
 
@@ -17,12 +17,14 @@
   align-items: center;
   gap: 60px;
   overflow: hidden;
+  opacity: 1 !important; /* Force visibility */
+  z-index: 10;
 }
 
 /* Left Column: Focus Text (40%) */
 .hero-sticky-left-scroll {
   flex: 1;
-  height: 100vh;
+  /* Removed height: 100vh to allow scroll container to grow */
   position: relative;
   display: flex;
   flex-direction: column;
@@ -30,20 +32,27 @@
 }
 
 .feature-focus-item {
-  height: 100vh;
+  min-height: 100vh;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
-  opacity: 0.2; /* Initial state, animated by GSAP */
-  transition: opacity 0.4s ease;
+  opacity: 0; /* Purely animated by GSAP now */
+  transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.feature-focus-content {
+  padding-left: 10%;
 }
 
 .feature-text-main {
   font-family: 'Outfit', sans-serif;
-  font-size: clamp(1.4rem, 2.8vw, 2.2rem);
-  font-weight: 800;
-  line-height: 1.3;
-  color: #111111;
-  max-width: 500px;
+  font-size: 1.6rem; 
+  font-weight: 600; /* Increased to 600 for high presence */
+  line-height: 1.5;
+  color: #000000 !important; /* Force pure black */
+  max-width: 440px;
+  letter-spacing: 0.5px;
 }
 
 /* Right Column: Large Pinned Video (60%) */

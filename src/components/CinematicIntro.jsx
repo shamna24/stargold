@@ -26,7 +26,12 @@ const CinematicIntro = () => {
       
       const mainVideo = videoRef.current;
       if (mainVideo && mainVideo.duration) {
-        const targetTime = mainVideo.duration * currentProgress.current;
+        // Programmatic Trimming: Skip first 0.5s and last 0.5s for a tighter feel
+        const startTime = 0.5;
+        const endTime = mainVideo.duration - 0.5;
+        const trimDuration = endTime - startTime;
+        
+        const targetTime = startTime + (trimDuration * currentProgress.current);
         
         // Single video seek - much lighter on performance
         if (!mainVideo.seeking && Math.abs(targetTime - lastTime.current) > 0.015) {

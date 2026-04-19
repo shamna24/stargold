@@ -54,18 +54,29 @@ function App() {
         ease: "none"
       });
 
-      // 2. Focal zone opacity highlights
+      // 2. Focal zone opacity & motion highlights
       focusItems.forEach((item) => {
-        gsap.to(item, {
-          opacity: 1,
-          scrollTrigger: {
-            trigger: item,
-            start: "top center+=20%",
-            end: "bottom center-=20%",
-            scrub: true,
-            containerAnimation: scrollTimeline, // Sync with our main vertical scroll
+        gsap.fromTo(item, 
+          { opacity: 0.4, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            scrollTrigger: {
+              trigger: item,
+              start: "top center+=35%",
+              end: "bottom center-=35%",
+              scrub: true,
+              containerAnimation: scrollTimeline, // Sync with our main vertical scroll
+              onLeave: () => {
+                // As it leaves the focal zone, slide it up further and fade out
+                gsap.to(item, { opacity: 0.2, y: -100, duration: 0.6 });
+              },
+              onEnterBack: () => {
+                gsap.to(item, { opacity: 1, y: 0, duration: 0.6 });
+              }
+            }
           }
-        });
+        );
       });
     }
 

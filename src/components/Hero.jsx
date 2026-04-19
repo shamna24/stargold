@@ -36,10 +36,6 @@ const Hero = () => {
             </div>
           ))}
           
-          <div className="hero-extra-actions">
-             <a href="#services" className="btn-primary" style={{ textDecoration: 'none' }}>View Full Specs</a>
-             <a href="#contact" className="btn-outline" style={{ textDecoration: 'none' }}>Get A Quote</a>
-          </div>
         </div>
 
         {/* Right: Sticky Video Column (Large View, Right Pinned) */}
