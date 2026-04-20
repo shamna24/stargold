@@ -36,10 +36,15 @@ const CinematicIntro = () => {
         // --- SCROLL OPTIMIZATION ---
         // Too many seeks causes video decoding lag. We require enough scroll distance before triggering a hard seek.
         const isMobile = window.innerWidth <= 768;
-        const seekThreshold = isMobile ? 0.04 : 0.015; // Smooth but performant 
+        const seekThreshold = isMobile ? 0.02 : 0.015; // Refined for mobile
         
         if (!mainVideo.seeking && Math.abs(targetTime - lastTime.current) > seekThreshold) {
-          mainVideo.currentTime = targetTime;
+          // Use fastSeek if available (Standard on Safari/iOS for high-perf scrubbing)
+          if (isMobile && mainVideo.fastSeek) {
+            mainVideo.fastSeek(targetTime);
+          } else {
+            mainVideo.currentTime = targetTime;
+          }
           lastTime.current = targetTime;
         }
       }
@@ -75,6 +80,8 @@ const CinematicIntro = () => {
           ref={videoRef}
           muted
           playsInline
+          webkit-playsinline="true"
+          x5-playsinline="true"
           className="intro-video-scrub"
           preload="auto"
         >

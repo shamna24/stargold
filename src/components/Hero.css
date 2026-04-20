@@ -100,11 +100,22 @@
   overflow: hidden;
   box-shadow: 0 50px 120px rgba(0, 0, 0, 0.12);
   background: #000;
+  position: relative; /* Context for absolute video stack */
 }
 
 .industrial-notch-left {
   /* Flipped notch to face the text on the left */
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 65%, 25px 50%, 0 35%);
+}
+
+.side-video-clip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  will-change: opacity, transform;
 }
 
 .cover-fill {

@@ -67,17 +67,43 @@ const Hero = () => {
         {/* Right: Sticky Video Column (Large View, Right Pinned) */}
         <div className="hero-sticky-right-video">
           <div className="video-frame large-right-rectangle industrial-notch-left">
+            {/* Multi-Layer Video Stack */}
             <video 
               muted 
               playsInline 
               autoPlay 
               loop
-              className="side-video-clip cover-fill"
+              className="side-video-clip cover-fill video-layer-1"
               preload="auto"
-              data-controls="false"
+              style={{ opacity: 1, zIndex: 3 }}
             >
-              <source src="/video-8.mp4" type="video/mp4" />
+              <source src="/hero-1.mp4" type="video/mp4" />
             </video>
+            
+            <video 
+              muted 
+              playsInline 
+              autoPlay 
+              loop
+              className="side-video-clip cover-fill video-layer-2"
+              preload="auto"
+              style={{ opacity: 0, zIndex: 2 }}
+            >
+              <source src="/hero-2.mp4" type="video/mp4" />
+            </video>
+
+            <video 
+              muted 
+              playsInline 
+              autoPlay 
+              loop
+              className="side-video-clip cover-fill video-layer-3"
+              preload="auto"
+              style={{ opacity: 0, zIndex: 1 }}
+            >
+              <source src="/hero-3.mp4" type="video/mp4" />
+            </video>
+
             <div className="video-clean-overlay"></div>
           </div>
         </div>

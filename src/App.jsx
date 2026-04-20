@@ -79,6 +79,36 @@ function App() {
             }
           }
         });
+
+        // 3. Multi-Video Cinematic Transitions
+        const video1 = document.querySelector('.video-layer-1');
+        const video2 = document.querySelector('.video-layer-2');
+        const video3 = document.querySelector('.video-layer-3');
+        const videoFrame = document.querySelector('.large-right-rectangle');
+
+        if (video1 && video2 && video3) {
+          // Video 1 -> 2 (Transition around 3rd item)
+          desktopTimeline.to(video1, { opacity: 0, duration: 1 }, "gap3-=0.5");
+          desktopTimeline.to(video2, { opacity: 1, duration: 1 }, "gap3-=0.5");
+          
+          // Video 2 -> 3 (Transition around 7th item)
+          desktopTimeline.to(video2, { opacity: 0, duration: 1 }, "gap7-=0.5");
+          desktopTimeline.to(video3, { opacity: 1, duration: 1 }, "gap7-=0.5");
+        }
+
+        if (videoFrame) {
+          // Cinematic Zoom-In effect
+          gsap.to(videoFrame, {
+            scale: 1.1,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".hero-sticky-section",
+              start: "top top",
+              end: "bottom bottom",
+              scrub: true,
+            }
+          });
+        }
       }
 
       // Theme transition: Black to White (Desktop Only)
