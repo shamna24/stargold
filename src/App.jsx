@@ -57,16 +57,6 @@ function App() {
         gsap.set(focusItems, { opacity: 0, visibility: "visible", scale: 0.98 });
         gsap.set(focusItems[0], { opacity: 1, scale: 1 });
 
-        const arrow = document.querySelector('.arrow-indicator-container');
-        if (arrow) {
-          gsap.set(arrow, { opacity: 1, y: -270 }); // Start at the top slot ( (0 - 4.5)*60 = -270 )
-        }
-
-        // Calculate positions dynamically to show vertical movement
-        const getItemY = (index) => {
-          return (index - 4.5) * 60; // Spread across 600px roughly
-        };
-
         focusItems.forEach((item, index) => {
           if (index === 0) {
             // Item 1: Snaps out after initial hold
@@ -76,23 +66,6 @@ function App() {
             // Snap In - Starts only after the GAP from the previous item
             desktopTimeline.to(item, { opacity: 1, scale: 1, duration: 0.4 }, ">");
             
-            // Move Arrow to current item slot
-            if (arrow) {
-              desktopTimeline.to(arrow, { 
-                y: getItemY(index),
-                scale: 1.3, 
-                backgroundColor: "rgba(212, 175, 55, 0.2)",
-                duration: 0.5, 
-                ease: "back.out(1.7)" 
-              }, "<");
-              
-              // Reset scale slightly after move to 'settle'
-              desktopTimeline.to(arrow, { 
-                scale: 1, 
-                duration: 0.3 
-              }, ">-0.2");
-            }
-
             // Hold at 100%
             if (index < focusItems.length - 1) {
               desktopTimeline.to(item, { opacity: 1, duration: 2.5 }, ">"); 
@@ -114,18 +87,19 @@ function App() {
 
         if (video1 && video2 && video3) {
           // Video 1 -> 2 (Transition around 3rd item)
-          desktopTimeline.to(video1, { opacity: 0, duration: 1 }, "gap3-=0.5");
-          desktopTimeline.to(video2, { opacity: 1, duration: 1 }, "gap3-=0.5");
+          // Achieving the 'jerrythewebdev' feel with SNAPPY transitions
+          desktopTimeline.to(video1, { opacity: 0, duration: 0.6, ease: "power2.inOut" }, "gap3-=0.3");
+          desktopTimeline.to(video2, { opacity: 1, duration: 0.6, ease: "power2.inOut" }, "gap3-=0.3");
           
           // Video 2 -> 3 (Transition around 7th item)
-          desktopTimeline.to(video2, { opacity: 0, duration: 1 }, "gap7-=0.5");
-          desktopTimeline.to(video3, { opacity: 1, duration: 1 }, "gap7-=0.5");
+          desktopTimeline.to(video2, { opacity: 0, duration: 0.6, ease: "power2.inOut" }, "gap7-=0.3");
+          desktopTimeline.to(video3, { opacity: 1, duration: 0.6, ease: "power2.inOut" }, "gap7-=0.3");
         }
 
         if (videoFrame) {
-          // Cinematic Zoom-In effect
+          // Cinematic Zoom-In effect (Slightly more dramatic)
           gsap.to(videoFrame, {
-            scale: 1.1,
+            scale: 1.15,
             ease: "none",
             scrollTrigger: {
               trigger: ".hero-sticky-section",
@@ -178,12 +152,6 @@ function App() {
         gsap.set(focusItems, { opacity: 0, visibility: "visible", scale: 0.98 });
         gsap.set(focusItems[0], { opacity: 1, scale: 1 });
 
-        // Build a mathematically sequential timeline
-        const arrow = document.querySelector('.arrow-indicator-container');
-        if (arrow) {
-          gsap.set(arrow, { opacity: 1, y: 0 }); 
-        }
-
         focusItems.forEach((item, index) => {
           if (index === 0) {
             // Item 1: Snaps out after initial hold
@@ -193,16 +161,6 @@ function App() {
             // Snap In - Starts only after the GAP from the previous item
             mobileTimeline.to(item, { opacity: 1, scale: 1, duration: 0.4 }, ">");
             
-            // Move Arrow pulse & slight vertical shift
-            if (arrow) {
-              mobileTimeline.to(arrow, { 
-                y: (index - 4.5) * 30, // Smaller movement on mobile
-                scale: 1.2, 
-                duration: 0.4, 
-                ease: "power2.out" 
-              }, "<");
-            }
-
             // Hold at 100%
             if (index < focusItems.length - 1) {
               mobileTimeline.to(item, { opacity: 1, duration: 2.5 }, ">"); 

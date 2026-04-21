@@ -1,100 +1,196 @@
 .services-section {
-  background: var(--dark-bg-elevated);
+  background: var(--dark-bg);
+  position: relative;
+  overflow: visible;
+  /* Removed fixed 600vh, GSAP will manage scroll distance via pinning */
+  width: 100%;
+  z-index: 100;
+}
+
+.services-pinned-container {
+  /* Removed sticky, GSAP pin: true will handle this */
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center everything beautifully */
+  padding-top: 60px; /* Slight offset for the fixed navbar */
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+/* Dot Grid stays fixed inside pinned container */
+.services-dot-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 30px 30px;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .services-header {
   text-align: center;
-  margin-bottom: 64px;
+  margin-bottom: 30px; /* Reduced from 60px to fit everything on screen */
+  position: relative;
+  z-index: 10;
 }
 
 .services-header h2 {
-  font-size: 3rem;
-  margin-bottom: 16px;
+  font-size: 3.5rem; /* Scaled down slightly to fit */
+  font-weight: 800;
+  letter-spacing: -2px;
+  margin-bottom: 5px;
 }
 
-.services-header p {
-  color: var(--text-muted);
+.services-sub-heading {
+  font-family: 'Bodoni Moda', 'Bodoni MT Condensed', serif;
+  font-size: 1.8rem; /* Scaled down slightly */
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0px;
+  text-transform: none; /* Serifs often look better in mixed case */
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  font-style: italic;
+}
+
+/* Subtle line decoration for sub-heading */
+.services-sub-heading::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+  margin: 10px auto 0;
+}
+
+/* Horizontal Slider */
+.services-slider-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  z-index: 10;
+}
+
+.services-slider {
+  display: flex;
+  width: max-content; /* Ensure scrollWidth is accurate */
+  padding: 0 50vw; /* Padding allows first/last card to reach center */
+  gap: 100px;
+  align-items: center;
+  will-change: transform;
+}
+
+/* Service Card */
+.service-card {
+  position: relative;
+  width: 380px;
+  height: 480px; /* Perfect height to ensure full visibility */
+  background: #050505;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  padding: 35px; /* Proportional padding */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), 
+              opacity 0.6s ease, 
+              filter 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+  
+  /* Default Inactive State */
+  opacity: 0.15;
+  transform: scale(0.8);
+  filter: blur(15px) grayscale(1);
+}
+
+.service-card-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 1.2s ease;
+  z-index: 1;
+}
+
+.service-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.8) 100%);
+  z-index: 2;
+  transition: opacity 0.6s ease;
+}
+
+.service-card.focal-focus .service-card-bg {
+  transform: scale(1.1);
+}
+
+.service-card.focal-focus .service-card-overlay {
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.7) 100%);
+}
+
+/* Active Class (To be toggled by GSAP) */
+.service-card.focal-focus {
+  opacity: 1;
+  transform: scale(1.1);
+  filter: blur(0) grayscale(0);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 40px 100px rgba(0, 0, 0, 1);
+}
+
+.card-pill {
+  position: relative;
+  z-index: 10;
+  background: #FFFFFF;
+  color: #000000;
+  display: inline-block;
+  padding: 8px 24px;
+  border-radius: 30px;
+  font-weight: 800;
   font-size: 1.1rem;
+  font-family: 'Outfit', sans-serif;
+  margin: auto 0 20px 0;
+  align-self: flex-start;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
 }
 
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+.card-title {
+  position: relative;
+  z-index: 10;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: #FFFFFF;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 
-@media (max-width: 1024px) {
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.card-description {
+  position: relative;
+  z-index: 10;
+  font-size: 1.1rem;
+  color: #E4E4E7;
+  line-height: 1.6;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
 @media (max-width: 768px) {
-  .services-grid {
-    grid-template-columns: 1fr;
+  .services-header h2 {
+    font-size: 2.5rem;
   }
-}
-
-.service-card {
-  background: var(--dark-bg);
-  border: 1px solid rgba(255,255,255,0.05);
-  padding: 40px 32px;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.service-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 2px;
-  background: var(--primary-gold);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-}
-
-.service-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  border-color: rgba(212,175,55,0.2);
-}
-
-.service-card:hover::before {
-  transform: scaleX(1);
-}
-
-.service-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 12px;
-  background: rgba(212, 175, 55, 0.1);
-  margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--primary-gold);
-  transition: all 0.3s ease;
-}
-
-.service-card:hover .service-icon {
-  background: var(--primary-gold);
-  color: #000;
-  transform: rotate(5deg) scale(1.1);
-}
-
-.service-icon svg {
-  width: 28px;
-  height: 28px;
-}
-
-.service-card h3 {
-  font-size: 1.4rem;
-  margin-bottom: 16px;
-}
-
-.service-card p {
-  color: var(--text-muted);
-  line-height: 1.6;
+  
+  .service-card {
+    width: 300px;
+    height: 450px;
+    padding: 30px;
+  }
 }

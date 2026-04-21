@@ -53,12 +53,6 @@ const Hero = () => {
         
         {/* Left: Scrolling Focus Text Column */}
         <div className="hero-sticky-left-scroll">
-          {/* Moving Arrow Indicator */}
-          <div className="arrow-indicator-container">
-            <svg viewBox="0 0 24 24" className="scroll-tracker-arrow">
-              <path d="M5 12h14m-7-7 7 7-7 7" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </div>
 
           {featureBlocks.map((block, index) => (
             <div key={index} className="feature-focus-item">

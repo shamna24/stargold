@@ -1,54 +1,128 @@
-import React from 'react';
+import React, { useRef, useLayoutEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Services.css';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   { 
-    title: "Structural Steel Fabrication", 
-    desc: "Precision fabrication for major infrastructural developments.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M2 20h20"/><path d="M7 20v-5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v5"/><path d="M3 8l9-5 9 5v12H3V8z"/>
-      </svg>
-    )
+    id: 1,
+    category: "Interior", 
+    title: "Interior", 
+    desc: "Bespoke interior solutions combining steel craftsmanship with modern architectural aesthetics.",
+    bgImage: "/services/interior.jpg"
   },
   { 
-    title: "Metal Trading", 
-    desc: "Sourcing and supplying high-grade steel materials globally.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-      </svg>
-    )
+    id: 2,
+    category: "Villa Kitchen", 
+    title: "Villa Kitchen", 
+    desc: "Premium stainless steel kitchen systems tailored for high-end residential luxury villas.",
+    bgImage: "/services/villa-kitchen.jpg"
   },
   { 
-    title: "Custom Solutions", 
-    desc: "Bespoke structural solutions tailored to project specifications.",
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/>
-      </svg>
-    )
+    id: 3,
+    category: "Cafeteria", 
+    title: "Cafeteria Kitchen Equipments", 
+    desc: "Professional-grade heavy-duty kitchen setups for mass catering and cafeterias.",
+    bgImage: "/services/cafeteria.jpg"
+  },
+  { 
+    id: 4,
+    category: "Stencils", 
+    title: "Stencils", 
+    desc: "Custom metal stencils and artistic stainless steel work for modern spaces.",
+    bgImage: "/services/stencils.png"
+  },
+  { 
+    id: 5,
+    category: "Restaurant", 
+    title: "Restaurant Kitchen Equipments", 
+    desc: "Complete industrial fabrication for elite restaurant kitchen environments.",
+    bgImage: "/services/restaurant.jpg"
   }
 ];
 
 const Services = () => {
+  const sectionRef = useRef(null);
+  const sliderRef = useRef(null);
+  const cardsRef = useRef([]);
+
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      const slider = sliderRef.current;
+      const cards = cardsRef.current;
+
+      // Master scrubbing animation: Moves the entire slider horizontally
+      gsap.to(slider, {
+        x: () => -(slider.scrollWidth - window.innerWidth),
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: () => `+=${slider.scrollWidth}`, // Vertical scroll proportional to horizontal content
+          pin: true, // Pin the section while scrolling horizontally
+          scrub: 1, 
+          invalidateOnRefresh: true,
+          // onUpdate logic to handle individual card focal state
+          onUpdate: (self) => {
+            const centerX = window.innerWidth / 2;
+            
+            cards.forEach((card) => {
+              if (!card) return;
+              const rect = card.getBoundingClientRect();
+              const cardMid = rect.left + (rect.width / 2);
+              
+              const distance = Math.abs(centerX - cardMid);
+              // Threshold for "Focus": 350px from center (wider for smoother transitions)
+              if (distance < 350) {
+                card.classList.add('focal-focus');
+              } else {
+                card.classList.remove('focal-focus');
+              }
+            });
+          }
+        }
+      });
+
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="services" className="services-section section-padding">
-      <div className="container">
-        <div className="services-header animate-fade-up">
-          <h2>Our <span className="gold-gradient-text">Core Services</span></h2>
-          <p>Delivering robust capability across the steel industry supply chain.</p>
+    <section id="services" className="services-section" ref={sectionRef}>
+      <div className="services-pinned-container">
+        <div className="services-dot-grid"></div>
+        
+        <div className="services-header">
+          <h2 className="animate-fade-up">Our <span className="gold-gradient-text">Core Services</span></h2>
+          <p className="services-sub-heading animate-fade-up">All steel fabrication services available</p>
         </div>
-        <div className="services-grid">
-          {services.map((svc, idx) => (
-            <div key={idx} className={`service-card animate-fade-up delay-200`}>
-              <div className="service-icon">
-                {svc.icon}
+
+        <div className="services-slider-wrapper">
+          <div className="services-slider" ref={sliderRef}>
+            {services.map((svc, idx) => (
+              <div 
+                key={svc.id} 
+                ref={el => cardsRef.current[idx] = el}
+                className="service-card"
+              >
+                {/* Background Image Layer */}
+                {svc.bgImage && (
+                  <div 
+                    className="service-card-bg"
+                    style={{ backgroundImage: `url(${svc.bgImage})` }}
+                  ></div>
+                )}
+                <div className="service-card-overlay"></div>
+
+                <div className="card-pill">{svc.category}</div>
+                <h3 className="card-title">{svc.title}</h3>
+                <p className="card-description">{svc.desc}</p>
               </div>
-              <h3>{svc.title}</h3>
-              <p>{svc.desc}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
