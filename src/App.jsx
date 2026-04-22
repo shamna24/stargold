@@ -79,22 +79,18 @@ function App() {
           }
         });
 
-        // 3. Multi-Video Cinematic Transitions
-        const video1 = document.querySelector('.video-layer-1');
-        const video2 = document.querySelector('.video-layer-2');
-        const video3 = document.querySelector('.video-layer-3');
+        // 3. Multi-Asset Cinematic Transitions (Synchronized with All 10 Feature Blocks)
+        const layers = Array.from({ length: 10 }, (_, i) => document.querySelector(`.video-layer-${i}`));
         const videoFrame = document.querySelector('.large-right-rectangle');
-
-        if (video1 && video2 && video3) {
-          // Video 1 -> 2 (Transition around 3rd item)
-          // Achieving the 'jerrythewebdev' feel with SNAPPY transitions
-          desktopTimeline.to(video1, { opacity: 0, duration: 0.6, ease: "power2.inOut" }, "gap3-=0.3");
-          desktopTimeline.to(video2, { opacity: 1, duration: 0.6, ease: "power2.inOut" }, "gap3-=0.3");
-          
-          // Video 2 -> 3 (Transition around 7th item)
-          desktopTimeline.to(video2, { opacity: 0, duration: 0.6, ease: "power2.inOut" }, "gap7-=0.3");
-          desktopTimeline.to(video3, { opacity: 1, duration: 0.6, ease: "power2.inOut" }, "gap7-=0.3");
-        }
+        
+        layers.forEach((layer, index) => {
+          if (index > 0 && layers[index-1] && layer) {
+            // Transition: Previous Layer -> Current Layer (At each gap)
+            const gapLabel = `gap${index}`;
+            desktopTimeline.to(layers[index-1], { opacity: 0, duration: 0.8, ease: "power2.inOut" }, `${gapLabel}-=0.3`);
+            desktopTimeline.to(layer, { opacity: 1, duration: 0.8, ease: "power2.inOut" }, `${gapLabel}-=0.3`);
+          }
+        });
 
         if (videoFrame) {
           // Cinematic Zoom-In effect (Slightly more dramatic)
@@ -179,6 +175,16 @@ function App() {
               // Last item: Permanent Hold
               mobileTimeline.to(item, { opacity: 1, duration: 2.5 }, ">");
             }
+          }
+        });
+
+        // Add Video Transitions for Mobile
+        const layers = Array.from({ length: 10 }, (_, i) => document.querySelector(`.video-layer-${i}`));
+        layers.forEach((layer, index) => {
+          if (index > 0 && layers[index-1] && layer) {
+            const gapLabel = `gap${index}`;
+            mobileTimeline.to(layers[index-1], { opacity: 0, duration: 0.8, ease: "power2.inOut" }, `${gapLabel}-=0.3`);
+            mobileTimeline.to(layer, { opacity: 1, duration: 0.8, ease: "power2.inOut" }, `${gapLabel}-=0.3`);
           }
         });
       }

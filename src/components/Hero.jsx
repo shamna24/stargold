@@ -65,49 +65,51 @@ const Hero = () => {
           
         </div>
 
-        {/* Right: Sticky Video Column (Large View, Right Pinned) */}
         <div className="hero-sticky-right-video">
           <div className="video-frame large-right-rectangle industrial-notch-left">
-            {/* Multi-Layer Video Stack */}
-            <video 
-              muted 
-              playsInline 
-              autoPlay 
-              loop
-              className="side-video-clip cover-fill video-layer-1"
-              preload="auto"
-              style={{ opacity: 1, zIndex: 3 }}
-              webkit-playsinline="true"
-              x5-playsinline="true"
-            >
+            {/* Multi-Layer Asset Stack */}
+            
+            {/* Layer 0: Fabrication (Initial) */}
+            <video muted playsInline autoPlay loop className="side-video-clip cover-fill video-layer-0" preload="auto" style={{ opacity: 1, zIndex: 10 }}>
+              <source src="/hero-video.mp4" type="video/mp4" />
+            </video>
+
+            {/* Layer 1: Kitchen Solutions (New Clip 18) */}
+            <video muted playsInline autoPlay loop className="side-video-clip cover-fill video-layer-1" preload="auto" style={{ opacity: 0, zIndex: 9 }}>
+              <source src="/video-18.mp4" type="video/mp4" />
+            </video>
+
+            {/* Layer 2: Laser Cutting (New Clip 16) */}
+            <video muted playsInline autoPlay loop className="side-video-clip cover-fill video-layer-2" preload="auto" style={{ opacity: 0, zIndex: 8 }}>
+              <source src="/video-16.mp4" type="video/mp4" />
+            </video>
+
+            {/* Layer 3: Metal Bending (New Clip 17) */}
+            <video muted playsInline autoPlay loop className="side-video-clip cover-fill video-layer-3" preload="auto" style={{ opacity: 0, zIndex: 7 }}>
+              <source src="/video-17.mp4" type="video/mp4" />
+            </video>
+
+            {/* Layer 4: AI Laser Precision */}
+            <img src="/ai-laser.png" className="side-video-clip cover-fill video-layer-4" style={{ opacity: 0, zIndex: 6 }} alt="AI Precision" />
+
+            {/* Layer 5: AI Fabrication */}
+            <img src="/ai-fabrication.png" className="side-video-clip cover-fill video-layer-5" style={{ opacity: 0, zIndex: 5 }} alt="AI Fabrication" />
+
+            {/* Layer 6: Existing Hero 1 */}
+            <video muted playsInline autoPlay loop className="side-video-clip cover-fill video-layer-6" preload="auto" style={{ opacity: 0, zIndex: 4 }}>
               <source src="/hero-1.mp4" type="video/mp4" />
             </video>
-            
-            <video 
-              muted 
-              playsInline 
-              autoPlay 
-              loop
-              className="side-video-clip cover-fill video-layer-2"
-              preload="auto"
-              style={{ opacity: 0, zIndex: 2 }}
-              webkit-playsinline="true"
-              x5-playsinline="true"
-            >
+
+            {/* Layer 7: AI Kitchen */}
+            <img src="/ai-kitchen.png" className="side-video-clip cover-fill video-layer-7" style={{ opacity: 0, zIndex: 3 }} alt="AI Kitchen" />
+
+            {/* Layer 8: Existing Hero 2 */}
+            <video muted playsInline autoPlay loop className="side-video-clip cover-fill video-layer-8" preload="auto" style={{ opacity: 0, zIndex: 2 }}>
               <source src="/hero-2.mp4" type="video/mp4" />
             </video>
 
-            <video 
-              muted 
-              playsInline 
-              autoPlay 
-              loop
-              className="side-video-clip cover-fill video-layer-3"
-              preload="auto"
-              style={{ opacity: 0, zIndex: 1 }}
-              webkit-playsinline="true"
-              x5-playsinline="true"
-            >
+            {/* Layer 9: Existing Hero 3 */}
+            <video muted playsInline autoPlay loop className="side-video-clip cover-fill video-layer-9" preload="auto" style={{ opacity: 0, zIndex: 1 }}>
               <source src="/hero-3.mp4" type="video/mp4" />
             </video>
 
