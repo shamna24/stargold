@@ -40,20 +40,28 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Cinematic Content Reveal */
 main > section:not(.cinematic-intro) {
-  opacity: calc((var(--intro-progress) - 0.85) * 6.66); /* Starts at 0.85, full at 1.0 (1/0.15 \approx 6.66) */
+  opacity: calc((var(--intro-progress, 0) - 0.85) * 6.66); /* Starts at 0.85, full at 1.0 */
   pointer-events: none;
   transition: opacity 0.4s ease-out;
 }
 
+/* Fallback: if user scrolls deep but progress is stuck, reveal anyway */
 main > section:not(.cinematic-intro).reveal-locked,
 .hero-sticky-section {
   opacity: 1 !important;
   pointer-events: auto !important;
 }
 
+/* Safety reveal for older browsers or if intro progress fails */
+.reveal-all-sections main > section {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
 /* When progress is near 1, allow interaction */
 :root:has([style*="--intro-progress: 1"]) main > section:not(.cinematic-intro),
-:root:has([style*="--intro-progress: 0.99"]) main > section:not(.cinematic-intro) {
+:root:has([style*="--intro-progress: 0.99"]) main > section:not(.cinematic-intro),
+:root:has([style*="--intro-progress: 0.98"]) main > section:not(.cinematic-intro) {
   opacity: 1;
   pointer-events: auto;
 }

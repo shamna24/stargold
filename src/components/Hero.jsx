@@ -77,6 +77,8 @@ const Hero = () => {
               className="side-video-clip cover-fill video-layer-1"
               preload="auto"
               style={{ opacity: 1, zIndex: 3 }}
+              webkit-playsinline="true"
+              x5-playsinline="true"
             >
               <source src="/hero-1.mp4" type="video/mp4" />
             </video>
@@ -89,6 +91,8 @@ const Hero = () => {
               className="side-video-clip cover-fill video-layer-2"
               preload="auto"
               style={{ opacity: 0, zIndex: 2 }}
+              webkit-playsinline="true"
+              x5-playsinline="true"
             >
               <source src="/hero-2.mp4" type="video/mp4" />
             </video>
@@ -101,6 +105,8 @@ const Hero = () => {
               className="side-video-clip cover-fill video-layer-3"
               preload="auto"
               style={{ opacity: 0, zIndex: 1 }}
+              webkit-playsinline="true"
+              x5-playsinline="true"
             >
               <source src="/hero-3.mp4" type="video/mp4" />
             </video>

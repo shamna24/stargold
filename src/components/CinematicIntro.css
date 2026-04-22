@@ -15,8 +15,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: calc(1.2 - var(--intro-progress));
-  transition: opacity 0.3s ease;
+  opacity: calc(1 - (var(--intro-progress, 0) / 0.9)); /* Fully fades to 0 before the end */
+  pointer-events: none;
+  transform: translate3d(0, 0, 0); /* Force GPU layer */
+  transition: opacity 0.4s ease-out;
   background: #000;
 }
 
@@ -40,8 +42,9 @@
   height: 100%;
   object-fit: cover; /* Fully fitted for both mobile and desktop */
   transform: translate3d(0, 0, 0);
-  will-change: transform;
+  will-change: transform, opacity;
   transition: opacity 0.5s ease;
+  background: #000; /* Fallback to solid black during scrubbing */
 }
 
 .video-overlay-cinematic {

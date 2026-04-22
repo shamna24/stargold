@@ -13,38 +13,61 @@ const CinematicIntro = () => {
     const video = videoRef.current;
     if (!video) return;
 
-    const handleLoadedMetadata = () => {
-      video.currentTime = 0;
+    // Aggressive iOS Optimization: Wake up the video engine on the first interaction
+    const unlockVideo = () => {
+      if (video.paused) {
+        video.play().then(() => {
+          video.pause();
+          console.log("Video engine unlocked for scrubbing");
+        }).catch(err => {
+          console.log("Video unlock deferred:", err);
+        });
+      }
+      window.removeEventListener('touchstart', unlockVideo);
+      window.removeEventListener('mousedown', unlockVideo);
+    };
+
+    const warmupVideo = () => {
+      if (video.readyState >= 2) {
+        if (video.currentTime < 0.5) video.currentTime = 0.5;
+      }
+    };
+
+    const handleCanPlay = () => {
+      warmupVideo();
     };
     
-    video.addEventListener('loadedmetadata', handleLoadedMetadata);
+    // Listen for the first touch/click to unlock programmatic playback (required for iOS)
+    window.addEventListener('touchstart', unlockVideo, { passive: true });
+    window.addEventListener('mousedown', unlockVideo, { passive: true });
+
+    if (video.readyState >= 2) {
+      warmupVideo();
+    } else {
+      video.addEventListener('canplay', handleCanPlay, { once: true });
+    }
 
     const updateVideo = () => {
-      // Linear interpolation for smoothness (Lerp)
-      const smoothingFactor = 0.05; 
+      const isMobile = window.innerWidth <= 768;
+      
+      // Responsive Smoothing: Faster on mobile to handle bursty scroll events
+      const smoothingFactor = isMobile ? 0.12 : 0.05; 
       currentProgress.current += (targetProgress.current - currentProgress.current) * smoothingFactor;
       
       const mainVideo = videoRef.current;
-      if (mainVideo && mainVideo.duration) {
-        // Programmatic Trimming: Skip first 0.5s and last 0.5s for a tighter feel
+      if (mainVideo && mainVideo.duration && mainVideo.readyState >= 2) {
         const startTime = 0.5;
         const endTime = mainVideo.duration - 0.5;
-        const trimDuration = endTime - startTime;
+        const trimDuration = Math.max(0, endTime - startTime);
         
         const targetTime = startTime + (trimDuration * currentProgress.current);
         
         // --- SCROLL OPTIMIZATION ---
-        // Too many seeks causes video decoding lag. We require enough scroll distance before triggering a hard seek.
-        const isMobile = window.innerWidth <= 768;
-        const seekThreshold = isMobile ? 0.02 : 0.015; // Refined for mobile
+        // On iOS, currentTime updates are smoother than fastSeek for precise scrubbing
+        const seekThreshold = isMobile ? 0.02 : 0.015;
         
-        if (!mainVideo.seeking && Math.abs(targetTime - lastTime.current) > seekThreshold) {
-          // Use fastSeek if available (Standard on Safari/iOS for high-perf scrubbing)
-          if (isMobile && mainVideo.fastSeek) {
-            mainVideo.fastSeek(targetTime);
-          } else {
-            mainVideo.currentTime = targetTime;
-          }
+        if (Math.abs(targetTime - lastTime.current) > seekThreshold) {
+          mainVideo.currentTime = targetTime;
           lastTime.current = targetTime;
         }
       }
@@ -58,6 +81,8 @@ const CinematicIntro = () => {
       const rect = containerRef.current.getBoundingClientRect();
       const totalScrollable = containerRef.current.scrollHeight - window.innerHeight;
       
+      if (totalScrollable <= 0) return;
+
       // Reach 100% progress exactly at the end of the scrollable container
       let progress = Math.abs(rect.top) / totalScrollable;
       targetProgress.current = Math.min(Math.max(progress, 0), 1);
@@ -68,22 +93,25 @@ const CinematicIntro = () => {
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('touchstart', unlockVideo);
+      window.removeEventListener('mousedown', unlockVideo);
       if (requestRef.current) cancelAnimationFrame(requestRef.current);
-      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      video.removeEventListener('canplay', handleCanPlay);
     };
   }, []);
 
   return (
-    <section ref={containerRef} className="cinematic-intro">
+    <section ref={containerRef} id="intro" className="cinematic-intro">
       <div className="video-sticky-wrapper">
         <video
           ref={videoRef}
           muted
+          autoPlay
           playsInline
-          webkit-playsinline="true"
-          x5-playsinline="true"
           className="intro-video-scrub"
           preload="auto"
+          webkit-playsinline="true"
+          x5-playsinline="true"
         >
           <source src="/intro-video.mp4" type="video/mp4" />
         </video>
