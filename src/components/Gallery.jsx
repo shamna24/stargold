@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 import './Gallery.css';
+
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const galleryData = [
   // Burners
@@ -71,10 +76,47 @@ const categories = ['ALL', 'BURNERS', 'SINKS', 'TROLLEYS', 'SHAWARMA', 'CHILLERS
 
 const Gallery = () => {
   const [activeCategory, setActiveCategory] = useState('ALL');
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  // Refresh ScrollTrigger when gallery height changes to prevent scroll jumps
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 400); 
+    return () => clearTimeout(timer);
+  }, [isExpanded, activeCategory]);
 
   const filteredItems = activeCategory === 'ALL' 
     ? galleryData 
     : galleryData.filter(item => item.category === activeCategory);
+
+  const INITIAL_COUNT = 8;
+  const displayedItems = isExpanded ? filteredItems : filteredItems.slice(0, INITIAL_COUNT);
+
+  const handleCategoryChange = (cat) => {
+    setActiveCategory(cat);
+    setIsExpanded(false); 
+  };
+
+  const toggleExpand = () => {
+    if (isExpanded) {
+      // 1. Start the scroll with a cinematic, "liquid" easing (Power4)
+      gsap.to(window, {
+        scrollTo: { y: "#gallery", offsetY: 80 },
+        duration: 1.5,
+        ease: "power4.inOut",
+        autoKill: false
+      });
+      
+      // 2. Collapse halfway through the scroll for a seamless "folding" effect
+      // This prevents the snap while making the transition feel alive
+      setTimeout(() => {
+        setIsExpanded(false);
+      }, 400);
+    } else {
+      setIsExpanded(true);
+    }
+  };
 
   return (
     <section id="gallery" className="gallery-section section-padding">
@@ -106,7 +148,7 @@ const Gallery = () => {
               animate={{ 
                 opacity: 1, 
                 y: 0,
-                color: activeCategory === cat ? "#d4af37" : "#666"
+                color: activeCategory === cat ? "#C9A84C" : "#666"
               }}
               whileHover={{ scale: 1.05, color: "#ffffff" }}
               whileTap={{ scale: 0.95 }}
@@ -117,9 +159,7 @@ const Gallery = () => {
                 delay: index * 0.05 
               }}
               className={`filter-btn ${activeCategory === cat ? 'active' : ''}`}
-              onClick={() => {
-                setActiveCategory(cat);
-              }}
+              onClick={() => handleCategoryChange(cat)}
             >
               {cat}
               {activeCategory === cat && (
@@ -136,18 +176,19 @@ const Gallery = () => {
 
         <motion.div 
           className="gallery-grid"
+          layout
         >
           <AnimatePresence mode='popLayout'>
-            {filteredItems.map(item => (
+            {displayedItems.map(item => (
               <motion.div 
                 key={item.id}
                 layout
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
                 transition={{ 
-                  duration: 0.4,
-                  ease: "circOut"
+                  duration: 0.6,
+                  ease: [0.16, 1, 0.3, 1]
                 }}
                 className="gallery-item"
               >
@@ -161,6 +202,28 @@ const Gallery = () => {
           </AnimatePresence>
         </motion.div>
 
+        {filteredItems.length > INITIAL_COUNT && (
+          <div className="gallery-view-more">
+            <motion.button
+              onClick={toggleExpand}
+              className="view-more-btn"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {isExpanded ? 'View Less' : 'View More'}
+              <svg 
+                className={`arrow-icon ${isExpanded ? 'rotate' : ''}`}
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                strokeWidth="2"
+              >
+                <path d="M19 9l-7 7-7-7" />
+              </svg>
+            </motion.button>
+          </div>
+        )}
+
         {filteredItems.length === 0 && (
           <motion.div 
             initial={{ opacity: 0 }}
@@ -173,6 +236,6 @@ const Gallery = () => {
       </div>
     </section>
   );
-}
+};
 
 export default Gallery;

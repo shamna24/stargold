@@ -124,6 +124,14 @@ function App() {
       });
     });
 
+    // Reveal sections when intro is passed (Global)
+    ScrollTrigger.create({
+      trigger: ".cinematic-intro",
+      start: "bottom center",
+      onEnter: () => document.body.classList.add('reveal-all-sections'),
+      onLeaveBack: () => document.body.classList.remove('reveal-all-sections')
+    });
+
     // Mobile Focal-Scroll Logic
     mm.add("(max-width: 768px)", () => {
       gsap.set("body", { backgroundColor: "#ffffff" });
@@ -131,14 +139,6 @@ function App() {
       
       const featuresContainer = document.querySelector('.hero-sticky-left-scroll');
       const focusItems = document.querySelectorAll('.feature-focus-item');
-      
-      // Safety reveal for sections below the intro on mobile
-      ScrollTrigger.create({
-        trigger: ".cinematic-intro",
-        start: "bottom center",
-        onEnter: () => document.body.classList.add('reveal-all-sections'),
-        onLeaveBack: () => document.body.classList.remove('reveal-all-sections')
-      });
 
       if (featuresContainer && focusItems.length > 0) {
         // Create a strictly sequential timeline with CLEARANCE GAPS (Zero-Overlap)
