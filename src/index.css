@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;600&display=swap');
 
 :root {
-  --primary-gold: #D4AF37;
-  --primary-gold-dim: rgba(212, 175, 55, 0.2);
-  --dark-bg: #050505;
+  --primary-gold: #C9A84C;
+  --primary-gold-dim: rgba(201, 168, 76, 0.15);
+  --dark-bg: #0a0a0a;
   --dark-bg-elevated: #111111;
   --steel-gray: #71717A;
   --steel-light: #E4E4E7;
@@ -24,12 +24,27 @@ html {
 body {
   font-family: 'Inter', sans-serif;
   background-color: var(--dark-bg);
-  /* Use a more solid background to avoid 'black gaps' between sections */
-  background-image: linear-gradient(to bottom, #050505 0%, #0a0a0a 100%);
+  /* Subtle repeating texture for depth */
+  background-image: 
+    repeating-linear-gradient(45deg, rgba(201, 168, 76, 0.015) 0px, rgba(201, 168, 76, 0.015) 1px, transparent 1px, transparent 12px),
+    linear-gradient(to bottom, #0a0a0a 0%, #0d0d0d 100%);
+  background-size: 100% 100%;
   color: var(--text-main);
   overflow-x: hidden;
-  overscroll-behavior-y: none; /* Anti-bounce for mobile scroll-sync */
+  overscroll-behavior-y: none;
   min-height: 100vh;
+  position: relative;
+}
+
+/* Premium Vignette Overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.9), 
+              inset 0 0 100px rgba(201, 168, 76, 0.05);
+  pointer-events: none;
+  z-index: 9999;
 }
 
 h1, h2, h3, h4, h5, h6 {

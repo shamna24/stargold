@@ -26,6 +26,7 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.25); /* Refined gold separator */
   border-radius: 999px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }

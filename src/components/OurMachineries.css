@@ -1,7 +1,11 @@
 .machinery-section {
-  padding: 100px 0;
-  background-color: #ffffff;
-  color: #000000;
+  padding: 120px 0;
+  background-image: linear-gradient(rgba(10, 10, 10, 0.7), rgba(10, 10, 10, 0.8)), url('/structural_steel_bg.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #ffffff;
+  position: relative;
 }
 
 .machinery-header {
@@ -19,7 +23,7 @@
 .machinery-header p {
   font-family: 'Outfit', sans-serif;
   font-size: 1.1rem;
-  color: #666;
+  color: #cccccc;
   max-width: 600px;
   margin: 0 auto;
 }
@@ -39,8 +43,16 @@
   position: relative;
   overflow: hidden;
   border-radius: 4px;
-  background: #f0f0f0;
+  background: #111111;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.machinery-item:hover {
+  border-color: #ffffff;
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(201, 168, 76, 0.2);
 }
 
 .machinery-item img,
