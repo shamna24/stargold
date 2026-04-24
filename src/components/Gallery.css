@@ -1,62 +1,187 @@
 .gallery-section {
-  background: #020202; /* Extremely dark for contrast */
+  background-color: #020202;
+  padding: 100px 0;
+  color: #ffffff;
 }
 
 .gallery-header {
   text-align: center;
-  margin-bottom: 64px;
+  margin-bottom: 40px; /* Reduced from 60px */
 }
 
 .gallery-header h2 {
-  font-size: 3rem;
-  margin-bottom: 16px;
+  font-size: 3.5rem;
+  font-family: 'Bodoni Moda', serif;
+  margin-bottom: 10px; /* Reduced from 20px */
+  letter-spacing: 2px;
 }
 
 .gallery-header p {
-  color: var(--text-muted);
+  color: #888;
   font-size: 1.1rem;
 }
 
+/* Simplified Category Filters - Text Only */
+.gallery-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 60px;
+  position: relative;
+  z-index: 50;
+  pointer-events: auto; /* FORCE INTERACTION */
+}
+
+.filter-btn {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 0.7rem; /* SMALL SIZE AS REQUESTED */
+  font-weight: 700;
+  letter-spacing: 0.2em; /* PREMIUM SPACING */
+  cursor: pointer;
+  padding: 15px 12px; /* INCREASED HIT AREA */
+  transition: all 0.3s ease;
+  position: relative;
+  text-transform: uppercase;
+  outline: none;
+  pointer-events: auto;
+}
+
+.filter-btn:hover {
+  color: #fff;
+}
+
+.filter-btn.active {
+  color: #d4af37; 
+}
+
+.active-underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #d4af37;
+  z-index: 1;
+}
+
+/* Alexis Style Masonry Grid - Restored for full visibility */
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  column-count: 4;
+  column-gap: 20px;
+  width: 100%;
 }
 
 .gallery-item {
-  height: 250px;
-  background: rgba(255,255,255,0.02);
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 4px;
-  transition: all 0.3s ease;
+  break-inside: avoid;
+  margin-bottom: 20px;
   position: relative;
   overflow: hidden;
+  border-radius: 0; 
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
 }
 
-.gallery-item::after {
-  content: '';
+.gallery-item img {
+  width: 100%;
+  height: auto; /* ENSURES FULL VISIBILITY */
+  display: block;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Minimal Overlay - Only on Hover */
+.gallery-overlay {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, transparent, rgba(212,175,55,0.1));
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.5s ease;
+  padding: 20px;
+  text-align: center;
+  pointer-events: none;
 }
 
-.gallery-item:hover {
-  transform: scale(1.02);
-  border-color: rgba(212,175,55,0.3);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-  z-index: 10;
-}
-
-.gallery-item:hover::after {
+.gallery-item:hover .gallery-overlay {
   opacity: 1;
 }
 
+.gallery-overlay h3 {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 5px;
+  transform: translateY(20px);
+  transition: transform 0.5s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.gallery-item:hover .gallery-overlay h3 {
+  transform: translateY(0);
+}
+
+.category-tag {
+  font-size: 0.6rem;
+  color: #d4af37;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.5s ease 0.1s;
+}
+
+.gallery-item:hover .category-tag {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gallery-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px;
+  color: #888;
+  font-style: italic;
+}
+
+/* Responsive Grid */
+@media (max-width: 1200px) {
+  .gallery-grid {
+    column-count: 3;
+  }
+}
+
 @media (max-width: 900px) {
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-grid {
+    column-count: 2;
+  }
+  .gallery-filter {
+    gap: 10px;
+  }
 }
 
 @media (max-width: 600px) {
-  .gallery-grid { grid-template-columns: 1fr; }
+  .gallery-grid {
+    column-count: 1;
+  }
+  .gallery-filter {
+    gap: 5px;
+  }
+  .filter-btn {
+    font-size: 0.7rem;
+    padding: 8px 10px;
+  }
 }
