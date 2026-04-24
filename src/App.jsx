@@ -54,27 +54,27 @@ function App() {
         });
 
         // Forced initial state: Item 1 visible, others hidden
-        gsap.set(focusItems, { opacity: 0, visibility: "visible", scale: 0.98 });
-        gsap.set(focusItems[0], { opacity: 1, scale: 1 });
+        gsap.set(focusItems, { opacity: 0, visibility: "visible", scale: 1, y: 50 });
+        gsap.set(focusItems[0], { opacity: 1, scale: 1, y: 0 });
 
         focusItems.forEach((item, index) => {
           if (index === 0) {
-            // Item 1: Snaps out after initial hold
-            desktopTimeline.to(item, { opacity: 0, scale: 0.98, duration: 0.4 }, 1.5);
+            // Item 1: Snaps out after initial hold (Scrolls up and fades out)
+            desktopTimeline.to(item, { opacity: 0, y: -50, duration: 0.4 }, 1.5);
             desktopTimeline.add("gap1", "+=0.3"); // EXPLICIT GAP
           } else {
-            // Snap In - Starts only after the GAP from the previous item
-            desktopTimeline.to(item, { opacity: 1, scale: 1, duration: 0.4 }, ">");
+            // Snap In - Starts only after the GAP from the previous item (Scrolls up and fades in)
+            desktopTimeline.to(item, { opacity: 1, y: 0, duration: 0.4 }, ">");
             
             // Hold at 100%
             if (index < focusItems.length - 1) {
               desktopTimeline.to(item, { opacity: 1, duration: 2.5 }, ">"); 
-              // Snap Out
-              desktopTimeline.to(item, { opacity: 0, scale: 0.98, duration: 0.4 }, ">"); 
+              // Snap Out (Scrolls up and fades out)
+              desktopTimeline.to(item, { opacity: 0, y: -50, duration: 0.4 }, ">"); 
               desktopTimeline.add(`gap${index + 1}`, "+=0.3"); // EXPLICIT GAP
             } else {
               // Last item: Permanent Hold
-              desktopTimeline.to(item, { opacity: 1, duration: 2.5 }, ">");
+              desktopTimeline.to(item, { opacity: 1, y: 0, duration: 2.5 }, ">");
             }
           }
         });
@@ -153,27 +153,27 @@ function App() {
         });
 
         // Forced initial state: Item 1 visible, others hidden
-        gsap.set(focusItems, { opacity: 0, visibility: "visible", scale: 0.98 });
-        gsap.set(focusItems[0], { opacity: 1, scale: 1 });
+        gsap.set(focusItems, { opacity: 0, visibility: "visible", scale: 1, y: 30 });
+        gsap.set(focusItems[0], { opacity: 1, scale: 1, y: 0 });
 
         focusItems.forEach((item, index) => {
           if (index === 0) {
-            // Item 1: Snaps out after initial hold
-            mobileTimeline.to(item, { opacity: 0, scale: 0.98, duration: 0.4 }, 1.5);
+            // Item 1: Snaps out after initial hold (Scrolls up and fades out)
+            mobileTimeline.to(item, { opacity: 0, y: -30, duration: 0.4 }, 1.5);
             mobileTimeline.add("gap1", "+=0.3"); // EXPLICIT GAP
           } else {
-            // Snap In - Starts only after the GAP from the previous item
-            mobileTimeline.to(item, { opacity: 1, scale: 1, duration: 0.4 }, ">");
+            // Snap In - Starts only after the GAP from the previous item (Scrolls up and fades in)
+            mobileTimeline.to(item, { opacity: 1, y: 0, duration: 0.4 }, ">");
             
             // Hold at 100%
             if (index < focusItems.length - 1) {
               mobileTimeline.to(item, { opacity: 1, duration: 2.5 }, ">"); 
-              // Snap Out
-              mobileTimeline.to(item, { opacity: 0, scale: 0.98, duration: 0.4 }, ">"); 
+              // Snap Out (Scrolls up and fades out)
+              mobileTimeline.to(item, { opacity: 0, y: -30, duration: 0.4 }, ">"); 
               mobileTimeline.add(`gap${index + 1}`, "+=0.3"); // EXPLICIT GAP
             } else {
               // Last item: Permanent Hold
-              mobileTimeline.to(item, { opacity: 1, duration: 2.5 }, ">");
+              mobileTimeline.to(item, { opacity: 1, y: 0, duration: 2.5 }, ">");
             }
           }
         });
