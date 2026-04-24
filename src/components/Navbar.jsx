@@ -43,6 +43,7 @@ const Navbar = () => {
             <a href="#home">Home</a>
             <a href="#services">Services</a>
             <a href="#gallery">Gallery</a>
+            <a href="#machineries">Machineries</a>
             
             <div className="nav-dropdown">
               <span className="dropbtn">About Us</span>
@@ -74,6 +75,7 @@ const Navbar = () => {
         <a href="#home" onClick={closeMenu}>Home</a>
         <a href="#services" onClick={closeMenu}>Services</a>
         <a href="#gallery" onClick={closeMenu}>Gallery</a>
+        <a href="#machineries" onClick={closeMenu}>Machineries</a>
         
         <div className="mobile-nav-dropdown">
           <span className="dropbtn">About Us</span>

@@ -69,6 +69,7 @@ const Hero = () => {
           <div className="video-frame large-right-rectangle industrial-notch-left">
             {/* Multi-Layer Image Stack - Replacing videos with high-quality generated images */}
             
+            {/* Multi-Layer Image Stack - Restored high-quality generated images as requested */}
             {featureBlocks.map((_, index) => (
               <img 
                 key={index}

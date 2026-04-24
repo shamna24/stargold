@@ -6,6 +6,7 @@ import OurStory from './components/OurStory';
 import Services from './components/Services';
 import WhyChooseUs from './components/WhyChooseUs';
 import Gallery from './components/Gallery';
+import OurMachineries from './components/OurMachineries';
 import CinematicIntro from './components/CinematicIntro';
 import Footer from './components/Footer';
 import gsap from 'gsap';
@@ -205,6 +206,7 @@ function App() {
         <Hero />
         <Services />
         <Gallery />
+        <OurMachineries />
         <About />
         <OurStory />
         <WhyChooseUs />
