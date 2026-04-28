@@ -32,7 +32,7 @@ const services = [
     category: "Stencils", 
     title: "Stencils", 
     desc: "Custom metal stencils and artistic stainless steel work for modern spaces.",
-    bgImage: "/services/stencils.png"
+    bgImage: "/services/restored_stencils.png"
   },
   { 
     id: 5,
