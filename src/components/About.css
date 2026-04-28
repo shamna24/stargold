@@ -128,7 +128,7 @@
 .steel-block {
   width: 80%;
   height: 100%;
-  background-image: linear-gradient(rgba(255,255,255,0.05), rgba(255,255,255,0.1)), url('/about-hero.jpg');
+  background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('/about-hero-new.png');
   background-size: cover;
   background-position: center;
   border: 1px solid rgba(212,175,55,0.4);
@@ -147,7 +147,7 @@
   font-weight: 800;
   letter-spacing: 4px;
   opacity: 0.8;
-  color: #111111;
+  color: #1A1A1E;
   transform: rotate(-90deg);
 }
 
