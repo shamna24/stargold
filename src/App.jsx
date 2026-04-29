@@ -80,8 +80,8 @@ function App() {
           }
         });
 
-        // 3. Multi-Asset Cinematic Transitions (Synchronized with All 10 Feature Blocks)
-        const layers = Array.from({ length: 10 }, (_, i) => document.querySelector(`.video-layer-${i}`));
+        // 3. Multi-Asset Cinematic Transitions (Synchronized with All 5 Feature Blocks)
+        const layers = Array.from({ length: 5 }, (_, i) => document.querySelector(`.video-layer-${i}`));
         const videoFrame = document.querySelector('.large-right-rectangle');
         
         layers.forEach((layer, index) => {
@@ -180,7 +180,7 @@ function App() {
         });
 
         // Add Video Transitions for Mobile
-        const layers = Array.from({ length: 10 }, (_, i) => document.querySelector(`.video-layer-${i}`));
+        const layers = Array.from({ length: 5 }, (_, i) => document.querySelector(`.video-layer-${i}`));
         layers.forEach((layer, index) => {
           if (index > 0 && layers[index-1] && layer) {
             const gapLabel = `gap${index}`;

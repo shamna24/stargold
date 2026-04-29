@@ -3,32 +3,32 @@ import { motion } from 'framer-motion';
 import './OurMachineries.css';
 
 const machineryData = [
-  { id: 1, type: 'video', src: '/machinery/video-1.mp4', title: 'Precision Operation', size: 'small', autoPlay: true },
-  { id: 2, type: 'image', src: '/machinery/machinery-2.png', title: 'Modern Machinery', size: 'large' },
-  { id: 3, type: 'video', src: '/machinery/video-2.mp4', title: 'Metal Cutting', size: 'small', autoPlay: true },
-  { id: 4, type: 'video', src: '/machinery/video-3.mp4', title: 'High Tech Fabrication', size: 'small', autoPlay: true },
-  { id: 5, type: 'video', src: '/machinery/video-4.mp4', title: 'Automated Process', size: 'large', autoPlay: true },
-  { id: 6, type: 'image', src: '/machinery/machinery-3.jpg', title: 'Quality Inspection', size: 'small' },
-  { id: 7, type: 'video', src: '/machinery/video-5.mp4', title: 'Sheet Metal Bending', size: 'small', autoPlay: true },
-  { id: 8, type: 'video', src: '/machinery/video-6.mp4', title: 'Expert Welding', size: 'small', autoPlay: true },
-  { id: 9, type: 'video', src: '/machinery/video-7.mp4', title: 'CNC Precision', size: 'small', autoPlay: true },
-  { id: 10, type: 'video', src: '/machinery/video-8.mp4', title: 'Industrial Workflow', size: 'large', autoPlay: true },
-  { id: 11, type: 'video', src: '/machinery/video-9.mp4', title: 'Machine Close-up', size: 'small', autoPlay: true },
-  { id: 12, type: 'video', src: '/machinery/video-10.mp4', title: 'Production Line', size: 'small', autoPlay: true },
-  { id: 13, type: 'image', src: '/machinery/machinery-4.png', title: 'Machinery Detail', size: 'small' },
-  { id: 14, type: 'video', src: '/machinery/video-11.mp4', title: 'Steel Processing', size: 'large', autoPlay: true },
-  { id: 15, type: 'video', src: '/machinery/video-12.mp4', title: 'Advanced Tech', size: 'small', autoPlay: true },
-  { id: 16, type: 'video', src: '/machinery/video-13.mp4', title: 'Factory Floor', size: 'small', autoPlay: true },
-  { id: 17, type: 'image', src: '/machinery/machinery-5.png', title: 'Final Product', size: 'small' },
-  // Adding more items to fill gaps
-  { id: 18, type: 'video', src: '/machinery/video-1.mp4', title: 'Precision Tooling', size: 'small', autoPlay: true },
-  { id: 19, type: 'video', src: '/machinery/video-2.mp4', title: 'Metal Work', size: 'small', autoPlay: true },
-  { id: 20, type: 'video', src: '/machinery/video-4.mp4', title: 'Large Scale Ops', size: 'large', autoPlay: true },
-  { id: 21, type: 'video', src: '/machinery/video-6.mp4', title: 'Precision Arc', size: 'small', autoPlay: true },
-  { id: 22, type: 'image', src: '/machinery/machinery-2.png', title: 'Tech Hub', size: 'small' },
-  { id: 23, type: 'video', src: '/machinery/video-8.mp4', title: 'Assembly Line', size: 'small', autoPlay: true },
-  { id: 24, type: 'video', src: '/machinery/video-10.mp4', title: 'Quality Control', size: 'small', autoPlay: true },
+  { id: 1, type: 'video', src: '/machinery/new/new-12.mp4', title: 'Precision Fabrication', size: 'large', autoPlay: true },
+  { id: 13, type: 'image', src: '/machinery/new/extra-1.png', title: 'Technical Design', size: 'small' },
+  { id: 2, type: 'video', src: '/machinery/new/new-13.mp4', title: 'Industrial Excellence', size: 'small', autoPlay: true },
+  { id: 3, type: 'video', src: '/machinery/new/new-1.mp4', title: 'Advanced Operations', size: 'small', autoPlay: true },
+  { id: 5, type: 'video', src: '/machinery/new/new-3.mp4', title: 'Quality Craftsmanship', size: 'large', autoPlay: true },
+  { id: 14, type: 'image', src: '/machinery/new/extra-2.png', title: 'Structure Modeling', size: 'small' },
+  { id: 4, type: 'video', src: '/machinery/new/new-2.mp4', title: 'Modern Workshop', size: 'small', autoPlay: true },
+  { id: 6, type: 'video', src: '/machinery/new/new-4.mp4', title: 'Steel Processing', size: 'small', autoPlay: true },
+  { id: 7, type: 'video', src: '/machinery/new/new-5.mp4', title: 'Production Workflow', size: 'small', autoPlay: true },
+  { id: 8, type: 'video', src: '/machinery/new/new-6.mp4', title: 'High-Tech Systems', size: 'small', autoPlay: true },
+  { id: 15, type: 'image', src: '/machinery/new/extra-3.png', title: 'Machinery Layout', size: 'small' },
+  { id: 9, type: 'video', src: '/machinery/new/new-8.mp4', title: 'Precision Bending', size: 'large', autoPlay: true },
+  { id: 10, type: 'video', src: '/machinery/new/new-9.mp4', title: 'Machine Close-up', size: 'small', autoPlay: true },
+  { id: 12, type: 'image', src: '/machinery/new/new-11.jpg', title: 'Fabrication Detail', size: 'small' },
 ];
+
+
+
+
+
+
+
+
+
+
+
 
 const MachineryItem = ({ item }) => {
   const videoRef = useRef(null);
