@@ -1,96 +1,64 @@
 import React, { useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import './OurMachineries.css';
 
 const machineryData = [
-  { id: 1, type: 'video', src: '/machinery/new/new-12.mp4', title: 'Precision Fabrication', size: 'large', autoPlay: true },
-  { id: 13, type: 'image', src: '/machinery/new/extra-1.png', title: 'Technical Design', size: 'small' },
-  { id: 2, type: 'video', src: '/machinery/new/new-13.mp4', title: 'Industrial Excellence', size: 'small', autoPlay: true },
-  { id: 3, type: 'video', src: '/machinery/new/new-1.mp4', title: 'Advanced Operations', size: 'small', autoPlay: true },
-  { id: 5, type: 'video', src: '/machinery/new/new-3.mp4', title: 'Quality Craftsmanship', size: 'large', autoPlay: true },
-  { id: 14, type: 'image', src: '/machinery/new/extra-2.png', title: 'Structure Modeling', size: 'small' },
-  { id: 4, type: 'video', src: '/machinery/new/new-2.mp4', title: 'Modern Workshop', size: 'small', autoPlay: true },
-  { id: 6, type: 'video', src: '/machinery/new/new-4.mp4', title: 'Steel Processing', size: 'small', autoPlay: true },
-  { id: 7, type: 'video', src: '/machinery/new/new-5.mp4', title: 'Production Workflow', size: 'small', autoPlay: true },
-  { id: 8, type: 'video', src: '/machinery/new/new-6.mp4', title: 'High-Tech Systems', size: 'small', autoPlay: true },
-  { id: 15, type: 'image', src: '/machinery/new/extra-3.png', title: 'Machinery Layout', size: 'small' },
-  { id: 9, type: 'video', src: '/machinery/new/new-8.mp4', title: 'Precision Bending', size: 'large', autoPlay: true },
-  { id: 10, type: 'video', src: '/machinery/new/new-9.mp4', title: 'Machine Close-up', size: 'small', autoPlay: true },
-  { id: 12, type: 'image', src: '/machinery/new/new-11.jpg', title: 'Fabrication Detail', size: 'small' },
+  { id: 1, type: 'video', src: '/machinery/custom/video-1.mp4', title: 'Precision Fabrication', desc: 'Micron-level accuracy for complex steel components.' },
+  { id: 2, type: 'image', src: '/machinery/custom/image-1.png', title: 'Advanced Design', desc: '3D modeling and structural engineering excellence.' },
+  { id: 3, type: 'video', src: '/machinery/custom/video-2.mp4', title: 'Industrial Bending', desc: 'Heavy-duty shaping with precision control.' },
+  { id: 4, type: 'video', src: '/machinery/custom/video-3.mp4', title: 'Laser Cutting', desc: 'High-speed CNC systems for perfect edges.' },
+  { id: 5, type: 'image', src: '/machinery/custom/image-2.png', title: 'Technical Workflow', desc: 'Optimized production for large-scale projects.' },
+  { id: 6, type: 'video', src: '/machinery/custom/video-4.mp4', title: 'Steel Processing', desc: 'End-to-end handling and material treatment.' },
+  { id: 7, type: 'video', src: '/machinery/custom/video-5.mp4', title: 'Modern Workshop', desc: 'State-of-the-art technology in action.' },
+  { id: 8, type: 'image', src: '/machinery/custom/image-3.jpeg', title: 'Quality Inspection', desc: 'Rigorous testing for industrial reliability.' },
+  { id: 9, type: 'image', src: '/machinery/custom/image-4.png', title: 'Craftsmanship', desc: 'Hand-finished perfection in every piece.' }
 ];
 
-
-
-
-
-
-
-
-
-
-
-
-const MachineryItem = ({ item }) => {
-  const videoRef = useRef(null);
-
-  const handleMouseEnter = () => {
-    if (item.type === 'video' && videoRef.current && !item.autoPlay) {
-      const playPromise = videoRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          console.log("Video play failed:", error);
-        });
-      }
-    }
-  };
-
-  const handleMouseLeave = () => {
-    if (item.type === 'video' && videoRef.current && !item.autoPlay) {
-      videoRef.current.pause();
-    }
-  };
-
+const MachineryCard = ({ item }) => {
   return (
     <motion.div 
-      className={`machinery-item ${item.size}`}
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      className="machinery-slide-card"
+      whileHover={{ scale: 1.02 }}
+      transition={{ type: "spring", stiffness: 300 }}
     >
-      {item.type === 'image' ? (
-        <img src={item.src} alt={item.title} loading="lazy" />
-      ) : (
-        <video 
-          ref={videoRef}
-          src={item.src} 
-          muted 
-          loop 
-          playsInline 
-          autoPlay={item.autoPlay}
-          poster={item.poster || ""}
-        />
-      )}
-      <div className="machinery-overlay">
+      <div className="card-media-wrapper">
+        {item.type === 'video' ? (
+          <video 
+            src={item.src} 
+            muted loop playsInline autoPlay 
+            className="card-media"
+          />
+        ) : (
+          <img src={item.src} alt={item.title} className="card-media" />
+        )}
+        <div className="card-media-overlay"></div>
+      </div>
+      <div className="card-info">
+        <div className="card-tag">Machinery</div>
         <h3>{item.title}</h3>
+        <p>{item.desc}</p>
       </div>
     </motion.div>
   );
 };
 
-
 const OurMachineries = () => {
+  const targetRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+  });
+
+  const x = useTransform(scrollYProgress, [0, 1], ["1%", "-65%"]);
+
   return (
-    <section id="machineries" className="machinery-section">
-      <div className="container">
-        <div className="machinery-header">
+    <section id="machineries" className="machinery-section horizontal-scroll-section" ref={targetRef}>
+      <div className="sticky-wrapper">
+        <div className="horizontal-header">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
           >
             Our <span className="gold-gradient-text">Machineries</span>
           </motion.h2>
@@ -98,18 +66,20 @@ const OurMachineries = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Explore our state-of-the-art technology and high-precision equipment.
+            Explore our state-of-the-art industrial technology.
           </motion.p>
         </div>
 
-        <div className="machinery-grid">
+        <motion.div style={{ x }} className="horizontal-slider">
           {machineryData.map((item) => (
-            <MachineryItem key={item.id} item={item} />
+            <MachineryCard key={item.id} item={item} />
           ))}
-        </div>
+        </motion.div>
       </div>
+      
+      <div className="machinery-blueprint-overlay"></div>
     </section>
   );
 };

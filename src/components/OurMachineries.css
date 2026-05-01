@@ -28,116 +28,152 @@
   margin: 0 auto;
 }
 
-/* Instagram Explore Style Grid */
-.machinery-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 250px;
-  grid-auto-flow: dense;
-  gap: 10px; /* Tight gap like Instagram */
-  width: 100%;
-  padding: 0 10px;
-}
-
-.machinery-item {
+/* Horizontal Scroll Section Styling */
+.horizontal-scroll-section {
   position: relative;
+  height: 350vh; /* Control the length of the horizontal scroll */
+  background-color: #050505;
+}
+
+.sticky-wrapper {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   overflow: hidden;
-  border-radius: 4px;
+  padding: 0 40px;
+}
+
+.horizontal-header {
+  text-align: center;
+  margin: 0 auto 60px auto;
+  max-width: 800px;
+  z-index: 10;
+}
+
+.horizontal-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.horizontal-header p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.2rem;
+  color: #aaaaaa;
+}
+
+.horizontal-slider {
+  display: flex;
+  gap: 30px;
+  padding-left: 50px;
+}
+
+.machinery-slide-card {
+  flex: 0 0 450px;
+  height: 550px;
   background: #111111;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  cursor: pointer;
-  transition: all 0.3s ease;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
-.machinery-item:hover {
-  border-color: #ffffff;
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(201, 168, 76, 0.2);
+.card-media-wrapper {
+  position: relative;
+  height: 65%;
+  width: 100%;
+  overflow: hidden;
 }
 
-.machinery-item img,
-.machinery-item video {
+.card-media {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.33, 1, 0.68, 1);
 }
 
-.machinery-item:hover img,
-.machinery-item:hover video {
-  transform: scale(1.05);
-}
-
-.machinery-overlay {
+.card-media-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
+  background: linear-gradient(to top, #111111, transparent 40%);
+}
+
+.card-info {
+  padding: 25px;
+  flex: 1;
   display: flex;
-  align-items: flex-end;
-  padding: 20px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.machinery-item:hover .machinery-overlay {
-  opacity: 1;
-}
-
-.machinery-overlay h3 {
-  color: #ffffff;
+.card-tag {
   font-family: 'Outfit', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 500;
-  margin: 0;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #c9a84c;
+  margin-bottom: 10px;
 }
 
-/* Grid Spanning for "Instagram Look" */
-.machinery-item.large {
-  grid-column: span 2;
-  grid-row: span 2;
+.card-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #ffffff;
+  margin-bottom: 10px;
 }
 
-/* We rely on grid-auto-flow: dense and the .large class instead of rigid nth-child positioning */
+.card-info p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  color: #888888;
+  line-height: 1.6;
+}
 
-
+.machinery-blueprint-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(201, 168, 76, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 168, 76, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 1;
+}
 
 /* Responsive adjustments */
 @media (max-width: 992px) {
-  .machinery-grid {
-    grid-auto-rows: 250px;
+  .machinery-slide-card {
+    flex: 0 0 350px;
+    height: 450px;
+  }
+  .horizontal-header h2 {
+    font-size: 3rem;
   }
 }
 
 @media (max-width: 768px) {
-  .machinery-header h2 {
-    font-size: 2.2rem;
+  .horizontal-scroll-section {
+    height: auto;
+    padding: 80px 0;
   }
-  
-  .machinery-grid {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 200px;
+  .sticky-wrapper {
+    position: relative;
+    height: auto;
+    padding: 0 20px;
   }
-
-  /* Reset spans for mobile */
-  .machinery-item.large {
-    grid-column: span 1;
-    grid-row: span 1;
+  .horizontal-slider {
+    flex-direction: column;
+    padding-left: 0;
+    gap: 40px;
   }
-  
-  /* Maybe keep some large on tablet but for phone keep it simple */
-  .machinery-item.large {
-     grid-column: span 2;
-     grid-row: span 2;
-  }
-}
-
-@media (max-width: 480px) {
-  .machinery-grid {
-    grid-template-columns: 1fr;
-    grid-auto-rows: 300px;
-  }
-  .machinery-item.large {
-    grid-column: span 1;
-    grid-row: span 1;
+  .machinery-slide-card {
+    flex: 0 0 auto;
+    width: 100%;
+    height: 500px;
   }
 }

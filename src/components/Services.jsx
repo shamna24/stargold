@@ -40,6 +40,13 @@ const services = [
     title: "Restaurant Kitchen Equipments", 
     desc: "Complete industrial fabrication for elite restaurant kitchen environments.",
     bgImage: "/services/restaurant.jpg"
+  },
+  { 
+    id: 6,
+    category: "Steel Cladding", 
+    title: "Steel Cladding", 
+    desc: "Premium architectural steel cladding solutions for modern building exteriors and interiors.",
+    bgImage: "/services/steel-cladding.jpg"
   }
 ];
 
