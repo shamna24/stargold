@@ -158,7 +158,7 @@
 
 @media (max-width: 768px) {
   .horizontal-scroll-section {
-    height: 300vh; /* Consistent reduction across devices */
+    height: 800vh; /* Increased for mobile to ensure all cards are visible */
   }
   .sticky-wrapper {
     padding: 0;

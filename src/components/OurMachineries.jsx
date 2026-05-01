@@ -48,7 +48,9 @@ const OurMachineries = () => {
     target: targetRef,
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-195%"]);
+  const isMobile = typeof window !== 'undefined' ? window.innerWidth <= 768 : false;
+  const xTranslate = isMobile ? "-680%" : "-195%";
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", xTranslate]);
 
   return (
     <section id="machineries" className="machinery-section horizontal-scroll-section" ref={targetRef}>
