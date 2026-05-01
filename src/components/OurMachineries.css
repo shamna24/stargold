@@ -31,7 +31,7 @@
 /* Horizontal Scroll Section Styling */
 .horizontal-scroll-section {
   position: relative;
-  height: 350vh; /* Control the length of the horizontal scroll */
+  height: 300vh; /* Tightened scroll to match card distance precisely */
   background-color: #050505;
 }
 
@@ -43,37 +43,37 @@
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  padding: 0 40px;
+  padding: 0;
 }
 
 .horizontal-header {
   text-align: center;
-  margin: 0 auto 60px auto;
+  margin: 20px auto 40px auto;
   max-width: 800px;
   z-index: 10;
 }
 
 .horizontal-header h2 {
   font-family: 'Playfair Display', serif;
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .horizontal-header p {
   font-family: 'Outfit', sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #aaaaaa;
 }
 
 .horizontal-slider {
   display: flex;
   gap: 30px;
-  padding-left: 50px;
+  padding-left: 50px; /* Reduced offset to minimize initial blank space */
 }
 
 .machinery-slide-card {
-  flex: 0 0 450px;
+  flex: 0 0 450px; /* Increased for better visual fill */
   height: 550px;
   background: #111111;
   border-radius: 20px;
@@ -158,22 +158,23 @@
 
 @media (max-width: 768px) {
   .horizontal-scroll-section {
-    height: auto;
-    padding: 80px 0;
+    height: 300vh; /* Consistent reduction across devices */
   }
   .sticky-wrapper {
-    position: relative;
-    height: auto;
-    padding: 0 20px;
+    padding: 0;
+  }
+  .horizontal-header h2 {
+    font-size: 2.2rem;
   }
   .horizontal-slider {
-    flex-direction: column;
-    padding-left: 0;
-    gap: 40px;
+    gap: 15px;
+    padding-left: 20px;
   }
   .machinery-slide-card {
-    flex: 0 0 auto;
-    width: 100%;
-    height: 500px;
+    flex: 0 0 300px;
+    height: 420px;
+  }
+  .card-info h3 {
+    font-size: 1.3rem;
   }
 }

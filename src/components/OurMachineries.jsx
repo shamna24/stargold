@@ -48,7 +48,7 @@ const OurMachineries = () => {
     target: targetRef,
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["1%", "-65%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-195%"]);
 
   return (
     <section id="machineries" className="machinery-section horizontal-scroll-section" ref={targetRef}>
