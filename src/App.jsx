@@ -156,13 +156,7 @@ function App() {
       });
     });
 
-    // Reveal sections when intro is passed (Global)
-    ScrollTrigger.create({
-      trigger: ".cinematic-intro",
-      start: "bottom center",
-      onEnter: () => document.body.classList.add('reveal-all-sections'),
-      onLeaveBack: () => document.body.classList.remove('reveal-all-sections')
-    });
+    // Removed intro-reveal-locked logic as per user request to avoid scroll animation at beginning
 
     // Mobile Focal-Scroll Logic
     mm.add("(max-width: 768px)", () => {

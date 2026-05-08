@@ -1,24 +1,22 @@
 .cinematic-intro {
-  height: 400vh; /* This defines the total scroll duration */
+  height: 100vh; /* Normal section height */
   position: relative;
   background: #000;
   z-index: 2000;
 }
 
 .video-sticky-wrapper {
-  position: sticky;
-  top: 0;
+  position: relative;
   width: 100%;
   height: 100vh;
-  height: 100dvh; /* Dynamic viewport height for mobile browsers */
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: calc(1 - (var(--intro-progress, 0) / 0.9)); /* Fully fades to 0 before the end */
+  opacity: 1; 
   pointer-events: none;
   transform: translate3d(0, 0, 0); /* Force GPU layer */
-  transition: opacity 0.4s ease-out;
+  transition: opacity 0.8s ease-in-out;
   background: #000;
 }
 
@@ -62,6 +60,6 @@
 
 @media (max-width: 768px) {
   .cinematic-intro {
-    height: 300vh;
+    height: 100vh;
   }
 }

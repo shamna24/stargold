@@ -5,8 +5,8 @@ import './OurMachineries.css';
 const machineryData = [
   { id: 1, type: 'video', src: '/machinery/custom/video-1.mp4', title: 'Precision Fabrication', desc: 'Micron-level accuracy for complex steel components.' },
   { id: 2, type: 'image', src: '/machinery/custom/image-1.png', title: 'Advanced Design', desc: '3D modeling and structural engineering excellence.' },
-  { id: 3, type: 'video', src: '/machinery/custom/video-2.mp4', title: 'Industrial Bending', desc: 'Heavy-duty shaping with precision control.' },
-  { id: 4, type: 'video', src: '/machinery/custom/video-3.mp4', title: 'Laser Cutting', desc: 'High-speed CNC systems for perfect edges.' },
+  { id: 3, type: 'video', src: '/machinery/custom/video-2.mp4', title: 'Laser Cutting', desc: 'High-speed CNC systems for perfect edges.' },
+  { id: 4, type: 'video', src: '/machinery/custom/video-3.mp4', title: 'Industrial Bending', desc: 'Heavy-duty shaping with precision control.' },
   { id: 5, type: 'image', src: '/machinery/custom/image-2.png', title: 'Technical Workflow', desc: 'Optimized production for large-scale projects.' },
   { id: 6, type: 'video', src: '/machinery/custom/video-4.mp4', title: 'Steel Processing', desc: 'End-to-end handling and material treatment.' },
   { id: 7, type: 'video', src: '/machinery/custom/video-5.mp4', title: 'Modern Workshop', desc: 'State-of-the-art technology in action.' },
