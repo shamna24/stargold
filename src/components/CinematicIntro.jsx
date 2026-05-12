@@ -26,7 +26,7 @@ const CinematicIntro = () => {
     const handleCanPlay = () => {
       warmupVideo();
     };
-    
+
     window.addEventListener('touchstart', unlockVideo, { passive: true });
     window.addEventListener('mousedown', unlockVideo, { passive: true });
 
