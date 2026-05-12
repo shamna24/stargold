@@ -177,15 +177,17 @@
     padding: 0 20px;
   }
   .horizontal-slider {
-    gap: 15px;
-    padding-left: 20px;
-    padding-right: 20px;
+    gap: 20px;
+    padding-left: 7.5vw; /* Center first card */
+    padding-right: 7.5vw;
   }
   .machinery-slide-card {
-    flex: 0 0 310px; /* Wider for better image framing */
-    height: 440px; /* Taller to give image more vertical space */
+    flex: 0 0 85vw; /* Almost full width for impact */
+    height: 520px; /* Taller for better image presence */
+    margin-top: 10px;
   }
+
   .card-info h3 {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
 }
