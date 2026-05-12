@@ -9,9 +9,10 @@ const machineryData = [
   { id: 4, type: 'video', src: '/machinery/custom/video-3.mp4', title: 'Industrial Bending', desc: 'Heavy-duty shaping with precision control.' },
   { id: 5, type: 'image', src: '/machinery/custom/image-2.png', title: 'Technical Workflow', desc: 'Optimized production for large-scale projects.' },
   { id: 7, type: 'video', src: '/machinery/custom/video-5.mp4', title: 'Bending Machine', desc: 'From simple metal forms to complex fabrication designs, our sheet bending services provide accuracy and reliability you can trust. With state-of-the-art machinery and expert craftsmanship, we deliver smooth bends, precise dimensions, and exceptional quality for every project. Built to meet industry standards and exceed customer expectations.' },
-  { id: 8, type: 'image', src: '/machinery/custom/image-3.jpeg', title: 'Quality Inspection', desc: 'Rigorous testing for industrial reliability.' },
+  { id: 8, type: 'image', src: '/machinery/custom/image-3.jpeg', title: 'Quality Inspection', desc: 'Harnessing high-wattage fiber technology to turn your most complex CAD files into reality.' },
   { id: 9, type: 'video', src: '/machinery/custom/video-2.mp4', title: 'Laser Cutting', desc: 'High-speed CNC systems for perfect edges.' },
-  { id: 10, type: 'image', src: '/machinery/custom/welding.jpg', title: 'Welding', desc: 'From heavy steel structures to detailed custom fabrication, our welding solutions are engineered for performance and durability. We focus on delivering strong joints, clean finishing, and exceptional workmanship that meet the highest industry standards and exceed client expectations.' }
+  { id: 10, type: 'image', src: '/machinery/custom/welding.jpg', title: 'Welding', desc: 'From heavy steel structures to detailed custom fabrication, our welding solutions are engineered for performance and durability. We focus on delivering strong joints, clean finishing, and exceptional workmanship that meet the highest industry standards and exceed client expectations.' },
+  { id: 11, type: 'image', src: '/machinery/custom/finishing.jpg', title: 'Finishing', desc: 'Delivering the perfect balance of strength and style through precision finishing services. Our team focuses on every detail to ensure outstanding quality, professional appearance, and long-lasting performance in every fabrication project.' }
 ];
 
 const MachineryCard = ({ item }) => {
