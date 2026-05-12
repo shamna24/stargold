@@ -51,7 +51,7 @@ const OurMachineries = () => {
   const totalCards = machineryData.length;
   // Dynamic calculation to ensure all cards are visible regardless of count
   const xTranslate = isMobile 
-    ? `-${(totalCards - 1) * 85}%` 
+    ? `-${(totalCards - 1) * 92}%` /* Slightly adjusted for wider cards */
     : `-${(totalCards - 3) * 35}%`;
   
   const x = useTransform(scrollYProgress, [0, 1], ["0%", xTranslate]);

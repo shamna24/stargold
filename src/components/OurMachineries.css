@@ -86,9 +86,15 @@
 
 .card-media-wrapper {
   position: relative;
-  height: 65%;
+  height: 65%; /* Default Desktop */
   width: 100%;
   overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .card-media-wrapper {
+    height: 72%; /* Increased for mobile to show more image */
+  }
 }
 
 .card-media {
@@ -176,8 +182,8 @@
     padding-right: 20px;
   }
   .machinery-slide-card {
-    flex: 0 0 280px; /* Slightly narrower for better fit */
-    height: 380px; /* Shorter to prevent vertical clipping on small screens */
+    flex: 0 0 310px; /* Wider for better image framing */
+    height: 440px; /* Taller to give image more vertical space */
   }
   .card-info h3 {
     font-size: 1.3rem;
