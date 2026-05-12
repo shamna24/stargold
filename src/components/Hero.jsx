@@ -73,6 +73,11 @@ const Hero = () => {
         
         {/* Left: Scrolling Focus Text Column */}
         <div className="hero-sticky-left-scroll">
+          <div className="scroll-tracker-container">
+            <div className="scroll-progress-line">
+              <div className="scroll-dot"></div>
+            </div>
+          </div>
 
           {featureBlocks.map((block, index) => (
             <div key={index} className="feature-focus-item">

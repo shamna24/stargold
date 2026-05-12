@@ -86,14 +86,26 @@ function App() {
           }
         });
 
+        // Add scroll line animation with a dedicated ScrollTrigger for absolute reliability
+        gsap.to(".hero-sticky-section .scroll-progress-line", {
+          height: "100%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".hero-sticky-section",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: true,
+          }
+        });
+
         // Forced initial state: Item 1 visible, others hidden
-        gsap.set(focusItems, { opacity: 0, visibility: "visible", scale: 1, y: 50 });
+        gsap.set(focusItems, { opacity: 0, visibility: "visible", scale: 1, y: 15 });
         gsap.set(focusItems[0], { opacity: 1, scale: 1, y: 0 });
 
         focusItems.forEach((item, index) => {
           if (index === 0) {
             // Item 1: Snaps out after initial hold (Scrolls up and fades out)
-            desktopTimeline.to(item, { opacity: 0, y: -50, duration: 0.4 }, 1.5);
+            desktopTimeline.to(item, { opacity: 0, y: -15, duration: 0.4 }, 1.5);
             desktopTimeline.add("gap1", "+=0.3"); // EXPLICIT GAP
           } else {
             // Snap In - Starts only after the GAP from the previous item (Scrolls up and fades in)
@@ -103,7 +115,7 @@ function App() {
             if (index < focusItems.length - 1) {
               desktopTimeline.to(item, { opacity: 1, duration: 2.5 }, ">"); 
               // Snap Out (Scrolls up and fades out)
-              desktopTimeline.to(item, { opacity: 0, y: -50, duration: 0.4 }, ">"); 
+              desktopTimeline.to(item, { opacity: 0, y: -15, duration: 0.4 }, ">"); 
               desktopTimeline.add(`gap${index + 1}`, "+=0.3"); // EXPLICIT GAP
             } else {
               // Last item: Permanent Hold
@@ -179,14 +191,26 @@ function App() {
           }
         });
 
+        // Add scroll line animation to mobile with a dedicated ScrollTrigger
+        gsap.to(".hero-sticky-section .scroll-progress-line", {
+          height: "100%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".hero-sticky-section",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: true,
+          }
+        });
+
         // Forced initial state: Item 1 visible, others hidden
-        gsap.set(focusItems, { opacity: 0, visibility: "visible", scale: 1, y: 30 });
+        gsap.set(focusItems, { opacity: 0, visibility: "visible", scale: 1, y: 10 });
         gsap.set(focusItems[0], { opacity: 1, scale: 1, y: 0 });
 
         focusItems.forEach((item, index) => {
           if (index === 0) {
             // Item 1: Snaps out after initial hold (Scrolls up and fades out)
-            mobileTimeline.to(item, { opacity: 0, y: -30, duration: 0.4 }, 1.5);
+            mobileTimeline.to(item, { opacity: 0, y: -10, duration: 0.4 }, 1.5);
             mobileTimeline.add("gap1", "+=0.3"); // EXPLICIT GAP
           } else {
             // Snap In - Starts only after the GAP from the previous item (Scrolls up and fades in)
@@ -196,7 +220,7 @@ function App() {
             if (index < focusItems.length - 1) {
               mobileTimeline.to(item, { opacity: 1, duration: 2.5 }, ">"); 
               // Snap Out (Scrolls up and fades out)
-              mobileTimeline.to(item, { opacity: 0, y: -30, duration: 0.4 }, ">"); 
+              mobileTimeline.to(item, { opacity: 0, y: -10, duration: 0.4 }, ">"); 
               mobileTimeline.add(`gap${index + 1}`, "+=0.3"); // EXPLICIT GAP
             } else {
               // Last item: Permanent Hold
