@@ -47,6 +47,7 @@ const OurMachineries = () => {
     target: targetRef,
   });
 
+  const isMobile = typeof window !== 'undefined' ? window.innerWidth <= 768 : false;
   const totalCards = machineryData.length;
   // Dynamic calculation to ensure all cards are visible regardless of count
   const xTranslate = isMobile 
