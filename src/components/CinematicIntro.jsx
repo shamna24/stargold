@@ -61,6 +61,14 @@ const CinematicIntro = () => {
         </video>
         <div className="video-backdrop-overlay"></div>
         <div className="video-overlay-cinematic"></div>
+        <div className="intro-content">
+          <h1 className="intro-title animate-fade-up">
+            STAR<span className="gold">GOLD</span>
+          </h1>
+          <p className="intro-subtitle animate-fade-up delay-200">
+            EXCELLENCE IN STEEL FABRICATION
+          </p>
+        </div>
       </div>
     </section>
   );

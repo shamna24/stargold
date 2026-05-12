@@ -9,15 +9,28 @@
   position: relative;
   width: 100%;
   height: 100vh;
+  height: 100dvh;
+  max-width: 100%;
+  margin: 0 auto;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 1; 
   pointer-events: none;
-  transform: translate3d(0, 0, 0); /* Force GPU layer */
-  transition: opacity 0.8s ease-in-out;
+  transform: translate3d(0, 0, 0);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   background: #000;
+}
+
+@media (min-width: 1200px) {
+  .video-sticky-wrapper {
+    width: 96%;
+    height: 92vh;
+    margin-top: 4vh;
+    border-radius: 40px;
+    box-shadow: 0 40px 120px rgba(0, 0, 0, 0.6);
+  }
 }
 
 .video-backdrop-overlay {
@@ -26,6 +39,7 @@
   background: radial-gradient(circle at center, rgba(212, 175, 55, 0.15) 0%, #000 100%);
   z-index: 1;
   animation: pulseBackground 8s ease-in-out infinite;
+  border-radius: inherit;
 }
 
 @keyframes pulseBackground {
@@ -38,11 +52,13 @@
   z-index: 5;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Fully fitted for both mobile and desktop */
+  object-fit: cover;
+  object-position: center;
   transform: translate3d(0, 0, 0);
   will-change: transform, opacity;
   transition: opacity 0.5s ease;
-  background: #000; /* Fallback to solid black during scrubbing */
+  background: #000;
+  border-radius: inherit;
 }
 
 .video-overlay-cinematic {
@@ -58,8 +74,51 @@
   100% { transform: translateY(0px); }
 }
 
+.intro-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  text-align: center;
+  width: 100%;
+  padding: 0 5%;
+  pointer-events: none;
+}
+
+.intro-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(2.5rem, 8vw, 6.5rem);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #FFFFFF;
+  margin-bottom: 15px;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.intro-title .gold {
+  color: var(--primary-gold);
+}
+
+.intro-subtitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(0.7rem, 1.5vw, 1.2rem);
+  letter-spacing: 0.45em;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 400;
+  text-transform: uppercase;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+}
+
 @media (max-width: 768px) {
   .cinematic-intro {
     height: 100vh;
+    height: 100dvh;
+  }
+  .video-sticky-wrapper {
+    height: 100vh;
+    height: 100dvh;
   }
 }
