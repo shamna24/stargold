@@ -6,8 +6,8 @@ const Hero = () => {
 
   const featureBlocks = [
     {
-      main: "Bespoke Stainless Steel Fabrication",
-      sub: "From industrial structures to intricate architectural details, we bring your vision to life.",
+      main: "Building the UAE's Future Infrastructure",
+      sub: "StarGold Steel LLC is a premier name in heavy steel fabrication and erection. Based in Ajman, we specialize in delivering high-precision structural solutions that drive the region's industrial growth.",
       type: "image",
       src: "/hero-img-0.png"
     },
@@ -77,7 +77,8 @@ const Hero = () => {
           {featureBlocks.map((block, index) => (
             <div key={index} className="feature-focus-item">
               <div className="feature-focus-content">
-                <p className="feature-text-main">{block.main}</p>
+                <div className="feature-tag">{index === 0 ? "WHO WE ARE" : "WHAT WE DO"}</div>
+                <h2 className="feature-text-main">{block.main}</h2>
                 <p className="feature-text-sub">{block.sub}</p>
               </div>
             </div>

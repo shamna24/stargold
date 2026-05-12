@@ -61,26 +61,35 @@
   padding-left: 10%;
 }
 
+.feature-tag {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #004a99; /* Professional blue from reference */
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
 .feature-text-main {
-  font-family: 'Playfair Display', serif !important;
-  font-style: italic;
-  font-size: 2.5rem; /* Larger for luxury serif */
-  font-weight: 700; /* Bold serif */
-  line-height: 1.2;
-  color: #000000 !important;
-  max-width: 520px;
-  letter-spacing: 0px;
-  margin-bottom: 16px;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #001a33 !important; /* Deep navy from reference */
+  max-width: 550px;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
 }
 
 .feature-text-sub {
-  font-family: 'Outfit', sans-serif !important; /* Keep sub as clean sans-serif */
-  font-size: 1.15rem;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 1.1rem;
   font-weight: 400; 
-  line-height: 1.6;
-  color: #000000 !important;
-  max-width: 460px;
-  opacity: 0.8;
+  line-height: 1.7;
+  color: #4b5563 !important; /* Muted gray for description */
+  max-width: 480px;
+  opacity: 1;
 }
 
 /* Right Column: Large Pinned Video (60%) */
@@ -104,8 +113,8 @@
 }
 
 .industrial-notch-left {
-  /* Flipped notch to face the text on the left */
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 65%, 25px 50%, 0 35%);
+  /* Removed notch to match the rounded look in reference */
+  border-radius: 24px;
 }
 
 .side-video-clip {
@@ -202,13 +211,14 @@
   }
 
   .feature-text-main {
-    font-size: 2rem !important;
-    font-weight: 700 !important;
-    margin-bottom: 8px !important;
-    color: #000000 !important;
-    font-family: 'Playfair Display', serif !important;
-    font-style: italic;
+    font-size: 2.2rem !important;
+    font-weight: 800 !important;
+    margin-bottom: 12px !important;
+    color: #001a33 !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-style: normal !important;
     line-height: 1.1 !important;
+    letter-spacing: -0.01em !important;
   }
 
   .feature-text-sub {
