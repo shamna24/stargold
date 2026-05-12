@@ -3,29 +3,29 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import './OurMachineries.css';
 
 const machineryData = [
-  { id: 1, type: 'video', src: '/machinery/custom/video-1.mp4', title: 'Precision Fabrication', desc: 'Micron-level accuracy for complex steel components.' },
-  { id: 2, type: 'image', src: '/machinery/custom/image-1.png', title: 'Advanced Design', desc: '3D modeling and structural engineering excellence.' },
-  { id: 3, type: 'video', src: '/machinery/custom/video-2.mp4', title: 'Laser Cutting', desc: 'High-speed CNC systems for perfect edges.' },
+  { id: 1, type: 'video', src: '/machinery/custom/video-1.mp4', title: 'Bending Machine', desc: 'Delivering flawless bends and clean finishes, even on the most complex geometries.' },
+  { id: 2, type: 'image', src: '/machinery/custom/image-1.png', title: 'Shearing Machine', desc: 'Clean cuts. Accurate measurements. Reliable fabrication solutions. Our sheet shearing services combine modern machinery with skilled expertise to produce high-quality metal components with speed, precision, and exceptional finishing for every project requirement.' },
+  { id: 3, type: 'image', src: '/machinery/custom/image-4.png', title: 'Laser Cutting', desc: 'At our steel fabrication company, precision is more than a process — it’s our commitment. Using advanced laser cutting technology, we deliver clean edges, accurate dimensions, and flawless finishing for every project. From custom metal fabrication to large-scale industrial works, we ensure strength, quality, and perfection in every cut. Experience reliable fabrication solutions designed to meet modern industry standards.' },
   { id: 4, type: 'video', src: '/machinery/custom/video-3.mp4', title: 'Industrial Bending', desc: 'Heavy-duty shaping with precision control.' },
   { id: 5, type: 'image', src: '/machinery/custom/image-2.png', title: 'Technical Workflow', desc: 'Optimized production for large-scale projects.' },
-  { id: 6, type: 'video', src: '/machinery/custom/video-4.mp4', title: 'Steel Processing', desc: 'End-to-end handling and material treatment.' },
-  { id: 7, type: 'video', src: '/machinery/custom/video-5.mp4', title: 'Modern Workshop', desc: 'State-of-the-art technology in action.' },
+  { id: 7, type: 'video', src: '/machinery/custom/video-5.mp4', title: 'Bending Machine', desc: 'From simple metal forms to complex fabrication designs, our sheet bending services provide accuracy and reliability you can trust. With state-of-the-art machinery and expert craftsmanship, we deliver smooth bends, precise dimensions, and exceptional quality for every project. Built to meet industry standards and exceed customer expectations.' },
   { id: 8, type: 'image', src: '/machinery/custom/image-3.jpeg', title: 'Quality Inspection', desc: 'Rigorous testing for industrial reliability.' },
-  { id: 9, type: 'image', src: '/machinery/custom/image-4.png', title: 'Craftsmanship', desc: 'Hand-finished perfection in every piece.' }
+  { id: 9, type: 'video', src: '/machinery/custom/video-2.mp4', title: 'Laser Cutting', desc: 'High-speed CNC systems for perfect edges.' },
+  { id: 10, type: 'image', src: '/machinery/custom/welding.jpg', title: 'Welding', desc: 'From heavy steel structures to detailed custom fabrication, our welding solutions are engineered for performance and durability. We focus on delivering strong joints, clean finishing, and exceptional workmanship that meet the highest industry standards and exceed client expectations.' }
 ];
 
 const MachineryCard = ({ item }) => {
   return (
-    <motion.div 
+    <motion.div
       className="machinery-slide-card"
       whileHover={{ scale: 1.02 }}
       transition={{ type: "spring", stiffness: 300 }}
     >
       <div className="card-media-wrapper">
         {item.type === 'video' ? (
-          <video 
-            src={item.src} 
-            muted loop playsInline autoPlay 
+          <video
+            src={item.src}
+            muted loop playsInline autoPlay
             className="card-media"
           />
         ) : (
@@ -56,7 +56,7 @@ const OurMachineries = () => {
     <section id="machineries" className="machinery-section horizontal-scroll-section" ref={targetRef}>
       <div className="sticky-wrapper">
         <div className="horizontal-header">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -80,7 +80,7 @@ const OurMachineries = () => {
           ))}
         </motion.div>
       </div>
-      
+
       <div className="machinery-blueprint-overlay"></div>
     </section>
   );
