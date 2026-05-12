@@ -56,8 +56,10 @@ const CinematicIntro = () => {
           preload="auto"
           webkit-playsinline="true"
           x5-playsinline="true"
+          disablePictureInPicture
+          disableRemotePlayback
         >
-          <source src="/intro-video.mp4" type="video/mp4" />
+          <source src="/cinematic-intro-21.mp4" type="video/mp4" />
         </video>
         <div className="video-backdrop-overlay"></div>
         <div className="video-overlay-cinematic"></div>
