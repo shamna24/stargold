@@ -169,8 +169,11 @@
   .sticky-wrapper {
     padding: 0;
   }
+  .horizontal-header {
+    margin: 10px auto 25px auto;
+  }
   .horizontal-header h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
   .horizontal-header p {
     font-size: 0.9rem;
@@ -182,12 +185,27 @@
     padding-right: 7.5vw;
   }
   .machinery-slide-card {
-    flex: 0 0 85vw; /* Almost full width for impact */
-    height: 520px; /* Taller for better image presence */
-    margin-top: 10px;
+    flex: 0 0 85vw; /* Immersive width */
+    height: 560px; /* Taller to accommodate long descriptions */
+    margin-top: 5px;
+  }
+
+  .card-media-wrapper {
+    height: 60%; /* Balanced ratio to prevent text clipping */
+  }
+
+  .card-info {
+    padding: 20px;
+    justify-content: flex-start; /* Align text to top of info area */
   }
 
   .card-info h3 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+  }
+
+  .card-info p {
+    font-size: 0.85rem; /* Smaller for mobile readability */
+    line-height: 1.4;
   }
 }
