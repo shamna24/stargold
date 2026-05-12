@@ -47,8 +47,12 @@ const OurMachineries = () => {
     target: targetRef,
   });
 
-  const isMobile = typeof window !== 'undefined' ? window.innerWidth <= 768 : false;
-  const xTranslate = isMobile ? "-680%" : "-195%";
+  const totalCards = machineryData.length;
+  // Dynamic calculation to ensure all cards are visible regardless of count
+  const xTranslate = isMobile 
+    ? `-${(totalCards - 1) * 85}%` 
+    : `-${(totalCards - 3) * 35}%`;
+  
   const x = useTransform(scrollYProgress, [0, 1], ["0%", xTranslate]);
 
   return (
