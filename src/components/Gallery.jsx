@@ -12,7 +12,7 @@ const galleryData = [
   { id: 1, title: 'Commercial Double Burner', category: 'BURNERS', image: '/gallery/burners/burner-1.png' },
   { id: 2, title: 'Single Industrial Burner', category: 'BURNERS', image: '/gallery/burners/burner-2.png' },
   { id: 3, title: 'Heavy Duty Triple Burner', category: 'BURNERS', image: '/gallery/burners/burner-3.png' },
-  
+
   // Sinks
   { id: 4, title: 'Single Sink with Drainboard', category: 'SINKS', image: '/gallery/sinks/sink-2.png' },
   { id: 5, title: 'L-Shaped Double Sink Station', category: 'SINKS', image: '/gallery/sinks/sink-3.png' },
@@ -51,15 +51,15 @@ const galleryData = [
   { id: 24, title: 'Industrial Exhaust Hood System', category: 'HOODS', image: '/gallery/hoods/hood-2.png' },
 
   // Home Interior
-  { id: 25, title: 'Modern Kitchen Interior 1', category: 'HOME INTERIOR', image: '/gallery/home-interior/interior-1.png' },
-  { id: 26, title: 'Modern Kitchen Interior 2', category: 'HOME INTERIOR', image: '/gallery/home-interior/interior-2.png' },
-  { id: 27, title: 'Modern Kitchen Interior 3', category: 'HOME INTERIOR', image: '/gallery/home-interior/interior-3.png' },
-  { id: 28, title: 'Modern Kitchen Interior 4', category: 'HOME INTERIOR', image: '/gallery/home-interior/interior-4.png' },
-  { id: 29, title: 'Modern Kitchen Interior 5', category: 'HOME INTERIOR', image: '/gallery/home-interior/interior-5.png' },
-  { id: 30, title: 'Modern Kitchen Interior 6', category: 'HOME INTERIOR', image: '/gallery/home-interior/interior-6.png' },
-  { id: 31, title: 'Modern Kitchen Interior 7', category: 'HOME INTERIOR', image: '/gallery/home-interior/interior-7.png' },
-  { id: 32, title: 'Modern Kitchen Interior 8', category: 'HOME INTERIOR', image: '/gallery/home-interior/interior-8.png' },
-  { id: 33, title: 'Modern Kitchen Interior 9', category: 'HOME INTERIOR', image: '/gallery/home-interior/interior-9.png' },
+  { id: 25, title: 'Modern Interior 1', category: 'HOME INTERIOR', image: '/gallery/home-interior/interior-1.png' },
+  { id: 26, title: 'Modern Interior 2', category: 'HOME INTERIOR', image: '/gallery/home-interior/interior-2.png' },
+  { id: 27, title: 'Modern Interior 3', category: 'HOME INTERIOR', image: '/gallery/home-interior/interior-3.png' },
+  { id: 28, title: 'Modern Interior 4', category: 'HOME INTERIOR', image: '/gallery/home-interior/interior-4.png' },
+  { id: 29, title: 'Modern Interior 5', category: 'HOME INTERIOR', image: '/gallery/home-interior/interior-5.png' },
+  { id: 30, title: 'Modern Interior 6', category: 'HOME INTERIOR', image: '/gallery/home-interior/interior-6.png' },
+  { id: 31, title: 'Modern Interior 7', category: 'HOME INTERIOR', image: '/gallery/home-interior/interior-7.png' },
+  { id: 32, title: 'Modern Interior 8', category: 'HOME INTERIOR', image: '/gallery/home-interior/interior-8.png' },
+  { id: 33, title: 'Modern Interior 9', category: 'HOME INTERIOR', image: '/gallery/home-interior/interior-9.png' },
 
   // Decor & Art
   { id: 34, title: 'Stainless Steel Islamic Art', category: 'DECOR & ART', image: '/gallery/decor/decor-1.png' },
@@ -82,12 +82,12 @@ const Gallery = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       ScrollTrigger.refresh();
-    }, 400); 
+    }, 400);
     return () => clearTimeout(timer);
   }, [isExpanded, activeCategory]);
 
-  const filteredItems = activeCategory === 'ALL' 
-    ? galleryData 
+  const filteredItems = activeCategory === 'ALL'
+    ? galleryData
     : galleryData.filter(item => item.category === activeCategory);
 
   const INITIAL_COUNT = 8;
@@ -95,7 +95,7 @@ const Gallery = () => {
 
   const handleCategoryChange = (cat) => {
     setActiveCategory(cat);
-    setIsExpanded(false); 
+    setIsExpanded(false);
   };
 
   const toggleExpand = () => {
@@ -107,7 +107,7 @@ const Gallery = () => {
         ease: "power4.inOut",
         autoKill: false
       });
-      
+
       // 2. Collapse halfway through the scroll for a seamless "folding" effect
       // This prevents the snap while making the transition feel alive
       setTimeout(() => {
@@ -122,7 +122,7 @@ const Gallery = () => {
     <section id="gallery" className="gallery-section section-padding">
       <div className="container">
         <div className="gallery-header">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -142,28 +142,28 @@ const Gallery = () => {
 
         <div className="gallery-filter">
           {categories.map((cat, index) => (
-            <motion.button 
-              key={cat} 
+            <motion.button
+              key={cat}
               initial={{ opacity: 0, y: 10 }}
-              animate={{ 
-                opacity: 1, 
+              animate={{
+                opacity: 1,
                 y: 0,
                 color: activeCategory === cat ? "#C9A84C" : "#666"
               }}
               whileHover={{ scale: 1.05, color: "#ffffff" }}
               whileTap={{ scale: 0.95 }}
-              transition={{ 
+              transition={{
                 type: "spring",
                 stiffness: 400,
                 damping: 17,
-                delay: index * 0.05 
+                delay: index * 0.05
               }}
               className={`filter-btn ${activeCategory === cat ? 'active' : ''}`}
               onClick={() => handleCategoryChange(cat)}
             >
               {cat}
               {activeCategory === cat && (
-                <motion.div 
+                <motion.div
                   layoutId="activeCategoryUnderline"
                   className="active-underline"
                   initial={false}
@@ -174,19 +174,19 @@ const Gallery = () => {
           ))}
         </div>
 
-        <motion.div 
+        <motion.div
           className="gallery-grid"
           layout
         >
           <AnimatePresence mode='popLayout'>
             {displayedItems.map(item => (
-              <motion.div 
+              <motion.div
                 key={item.id}
                 layout
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                transition={{ 
+                transition={{
                   duration: 0.6,
                   ease: [0.16, 1, 0.3, 1]
                 }}
@@ -211,11 +211,11 @@ const Gallery = () => {
               whileTap={{ scale: 0.95 }}
             >
               {isExpanded ? 'View Less' : 'View More'}
-              <svg 
+              <svg
                 className={`arrow-icon ${isExpanded ? 'rotate' : ''}`}
-                viewBox="0 0 24 24" 
-                fill="none" 
-                stroke="currentColor" 
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
                 strokeWidth="2"
               >
                 <path d="M19 9l-7 7-7-7" />
@@ -225,7 +225,7 @@ const Gallery = () => {
         )}
 
         {filteredItems.length === 0 && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="gallery-empty"
