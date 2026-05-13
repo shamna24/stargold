@@ -9,7 +9,7 @@ const Hero = () => {
       main: "Building the UAE's Future Infrastructure",
       sub: "StarGold Steel LLC is a premier name in heavy steel fabrication and erection. Based in Ajman, we specialize in delivering high-precision structural solutions that drive the region's industrial growth.",
       type: "image",
-      src: "/hero-img-0.png"
+      src: "/hero-uae-infrastructure.jpg"
     },
     {
       main: "Complete kitchen solutions for restaurants, cafeterias, and homes.",
@@ -21,7 +21,7 @@ const Hero = () => {
       main: "Advanced laser cutting technology for clean edges and precise designs.",
       sub: "Ensuring accuracy in every cut.",
       type: "image",
-      src: "/hero-img-2.png"
+      src: "/hero-laser-cutting.jpg"
     },
     {
       main: "High-performance sheet metal bending for perfect shaping.",
@@ -33,7 +33,7 @@ const Hero = () => {
       main: "Precision shearing with minimal material waste.",
       sub: "Delivering speed, accuracy, and cost-effective production.",
       type: "image",
-      src: "/hero-img-4.png"
+      src: "/hero-minimal-waste.png"
     },
     {
       main: "Expert craftsmanship backed by years of hands-on experience.",
