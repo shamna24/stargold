@@ -59,7 +59,7 @@ const CinematicIntro = () => {
           disablePictureInPicture
           disableRemotePlayback
         >
-          <source src="/cinematic-intro-23.mp4" type="video/mp4" />
+          <source src="/cinematic-intro-3.mp4" type="video/mp4" />
         </video>
         <div className="video-backdrop-overlay"></div>
         <div className="video-overlay-cinematic"></div>
