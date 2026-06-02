@@ -119,7 +119,7 @@ const Gallery = () => {
   };
 
   return (
-    <section id="gallery" className="gallery-section section-padding">
+    <section id="gallery" className="gallery-section section-padding" aria-label="Project Gallery - Stainless Steel Kitchen Equipment, Burners, Sinks, Trolleys, Chillers, Hoods, Interior Work by StarGold Steel LLC">
       <div className="container">
         <div className="gallery-header">
           <motion.h2
@@ -192,7 +192,7 @@ const Gallery = () => {
                 }}
                 className="gallery-item"
               >
-                <img src={item.image} alt={item.title} loading="lazy" />
+                <img src={item.image} alt={`${item.title} - ${item.category} - StarGold Steel LLC Ajman UAE`} loading="lazy" />
                 <div className="gallery-overlay">
                   <span className="category-tag">{item.category}</span>
                   <h3>{item.title}</h3>

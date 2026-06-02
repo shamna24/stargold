@@ -68,7 +68,7 @@ const Hero = () => {
   ];
 
   return (
-    <section id="home" className="hero-sticky-section hero-theme-light" ref={heroRef}>
+    <section id="home" className="hero-sticky-section hero-theme-light" ref={heroRef} aria-label="StarGold Steel LLC - Steel Fabrication Services, Laser Cutting, Welding, Kitchen Equipment Manufacturing in Ajman UAE">
       <div className="hero-sticky-container nexara-layout">
         
         {/* Left: Scrolling Focus Text Column */}
@@ -125,7 +125,7 @@ const Hero = () => {
                     objectFit: 'cover',
                     transform: 'scale(1.05)' /* Extra zoom to ensure full coverage */
                   }} 
-                  alt={`Stargold Fabrication ${index + 1}`} 
+                  alt={`StarGold Steel LLC ${block.main} - Steel Fabrication Ajman UAE`} 
                 />
               )
             ))}

@@ -48,7 +48,7 @@ const ConsultingIcon = () => (
 
 const WhyChooseUs = () => {
   return (
-    <section id="why-choose-us" className="why-choose-us-section section-padding">
+    <section id="why-choose-us" className="why-choose-us-section section-padding" aria-label="Why Choose StarGold Steel - Unmatched Quality, Reliable Delivery, Expert Consulting">
       <div className="container">
         <div className="choose-header animate-fade-up">
           <h2 className="premium-title">Why <span className="gold-gradient-text">Choose Us?</span></h2>

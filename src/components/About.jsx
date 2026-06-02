@@ -23,7 +23,7 @@ const About = () => {
   }, []);
 
   return (
-    <section id="about" className="about-section section-padding" ref={sectionRef}>
+    <section id="about" className="about-section section-padding" ref={sectionRef} aria-label="About StarGold Steel LLC - Premier Steel Fabrication Company in Ajman Jurf-1, UAE">
       <div className="parallax-bg">
         <div className="glow-orb orb-1"></div>
         <div className="glow-orb orb-2"></div>

@@ -28,7 +28,7 @@ const MachineryCard = ({ item }) => {
             className="card-media"
           />
         ) : (
-          <img src={item.src} alt={item.title} className="card-media" />
+          <img src={item.src} alt={`${item.title} - Steel Fabrication Machinery - StarGold Steel LLC Ajman UAE`} className="card-media" />
         )}
         <div className="card-media-overlay"></div>
       </div>
@@ -57,7 +57,7 @@ const OurMachineries = () => {
   const x = useTransform(scrollYProgress, [0, 1], ["0%", xTranslate]);
 
   return (
-    <section id="machineries" className="machinery-section horizontal-scroll-section" ref={targetRef}>
+    <section id="machineries" className="machinery-section horizontal-scroll-section" ref={targetRef} aria-label="Our Machineries - Laser Cutting, Bending, Shearing, Welding, Finishing Equipment at StarGold Steel LLC Ajman UAE">
       <div className="sticky-wrapper">
         <div className="horizontal-header">
           <motion.h2

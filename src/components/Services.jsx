@@ -98,7 +98,7 @@ const Services = () => {
   }, []);
 
   return (
-    <section id="services" className="services-section" ref={sectionRef}>
+    <section id="services" className="services-section" ref={sectionRef} aria-label="Steel Fabrication Services - Interior, Villa Kitchen, Cafeteria, Restaurant, Stencils, Steel Cladding in UAE">
       <div className="services-pinned-container">
         <div className="services-dot-grid"></div>
         

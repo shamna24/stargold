@@ -19,7 +19,7 @@ const MissionIcon = () => (
 
 const OurStory = () => {
   return (
-    <section id="our-story" className="our-story-section">
+    <section id="our-story" className="our-story-section" aria-label="Our Story - Steel Fabrication Excellence Since 2015 in Ajman, UAE">
       <div className="container">
         
         <div className="our-story-header animate-fade-up">

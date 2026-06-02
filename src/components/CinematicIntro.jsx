@@ -44,7 +44,7 @@ const CinematicIntro = () => {
   }, []);
 
   return (
-    <section ref={containerRef} id="intro" className="cinematic-intro">
+    <section ref={containerRef} id="intro" className="cinematic-intro" aria-label="StarGold Steel LLC - Premier Steel Fabrication Company in Ajman, UAE">
       <div className="video-sticky-wrapper">
         <video
           ref={videoRef}
@@ -58,6 +58,7 @@ const CinematicIntro = () => {
           x5-playsinline="true"
           disablePictureInPicture
           disableRemotePlayback
+          aria-label="StarGold Steel LLC steel fabrication and kitchen equipment manufacturing showreel"
         >
           <source src="/cinematic-intro-3.mp4" type="video/mp4" />
         </video>
@@ -66,6 +67,7 @@ const CinematicIntro = () => {
         <div className="intro-content">
           <h1 className="intro-title animate-fade-up">
             STAR<span className="gold">GOLD</span>
+            <span className="sr-only"> Steel LLC — Premier Steel Fabrication, Stainless Steel Kitchen Equipment Manufacturer &amp; Structural Steel Solutions in Ajman, UAE</span>
           </h1>
           <p className="intro-subtitle animate-fade-up delay-200">
             EXCELLENCE IN STEEL FABRICATION

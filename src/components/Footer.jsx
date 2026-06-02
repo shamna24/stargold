@@ -35,7 +35,7 @@ const WhatsAppIcon = () => (
 
 const Footer = () => {
   return (
-    <footer id="contact" className="footer-section">
+    <footer id="contact" className="footer-section" aria-label="Contact StarGold Steel LLC - Phone, Email, WhatsApp, Location in Ajman Jurf-1, UAE">
       <div className="footer-cta-container">
         <h2 className="footer-headline">
           <span className="italic-serif">A Complete Solution</span><br/>

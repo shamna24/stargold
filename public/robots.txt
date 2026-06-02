@@ -1,0 +1,13 @@
+# StarGold Steel LLC - Robots.txt
+# https://stargoldsteel.com
+
+User-agent: *
+Allow: /
+Disallow: /node_modules/
+Disallow: /src/
+
+# Sitemap Location
+Sitemap: https://stargoldsteel.com/sitemap.xml
+
+# Crawl-delay (be gentle on server)
+Crawl-delay: 5
