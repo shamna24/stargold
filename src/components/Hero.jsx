@@ -51,7 +51,7 @@ const Hero = () => {
       main: "From concept to installation, we manage complete fabrication workflows.",
       sub: "Ensuring seamless execution at every stage.",
       type: "image",
-      src: "/hero-img-7.png"
+      src: "/hero-img-7.jpeg"
     },
     {
       main: "Durable and reliable metal solutions for industrial and commercial use.",
